@@ -1,6 +1,6 @@
 {
   "name": "AeroLog - Pilot Flight Logbook",
-  "short_name": "AeroLog",
+  "short_name": "AeroLog Pro",
   "description": "Professional pilot flight logbook",
   "start_url": "./index.html",
   "display": "standalone",
