@@ -619,6 +619,10 @@ Boeing 747-400
 
 
 <input id="duration" value="${flight.duration}">
+<input 
+id="route"
+value="${flight.route || ""}"
+placeholder="Route (optional)">
 
 
 <select id="flight-type">
@@ -637,6 +641,19 @@ VFR
 
 </select>
 
+<textarea
+id="metar-departure"
+placeholder="METAR Departure (optional)">${flight.metarDeparture || ""}</textarea>
+
+
+<textarea
+id="metar-arrival"
+placeholder="METAR Arrival (optional)">${flight.metarArrival || ""}</textarea>
+
+
+<textarea
+id="notes"
+placeholder="Notes">${flight.notes || ""}</textarea>
 
 <button class="save" onclick="updateFlight(${id})">
 
@@ -682,6 +699,20 @@ document.getElementById("arrival").value.toUpperCase();
 flight.duration =
 document.getElementById("duration").value;
 
+flight.route =
+document.getElementById("route").value;
+
+
+flight.metarDeparture =
+document.getElementById("metar-departure").value;
+
+
+flight.metarArrival =
+document.getElementById("metar-arrival").value;
+
+
+flight.notes =
+document.getElementById("notes").value;
 
 flight.type =
 document.getElementById("flight-type").value;
