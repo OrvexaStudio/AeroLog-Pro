@@ -50,7 +50,7 @@ function changePage(page){
 function loadHome(){
 
     let stats = getFlightStats();
-
+let todayFlights = getTodayPlannedFlights();
 
     content.innerHTML = `
 
@@ -109,6 +109,69 @@ function loadHome(){
     </div>
 
     </section>
+
+    ${
+todayFlights.length > 0 ?
+
+`
+
+<section class="recent">
+
+<p class="label">
+TODAY PROGRAMMED FLIGHTS
+</p>
+
+
+${todayFlights.map(flight=>`
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+${flight.flightNumber || "FR----"}
+</strong>
+
+
+<p>
+${flight.aircraft}
+</p>
+
+
+<p>
+${flight.departure}
+→
+${flight.arrival}
+</p>
+
+
+</div>
+
+
+
+<button onclick="confirmPlannedFlight(${flight.id})">
+CONVALIDA
+</button>
+
+
+<button onclick="rejectPlannedFlight(${flight.id})">
+NON EFFETTUATO
+</button>
+
+
+</div>
+
+
+`).join("")}
+
+
+</section>
+
+`
+
+:
+""
+}
 
     `;
 
@@ -1863,14 +1926,12 @@ ${flight.duration}
 
 ${selectedPlanned.map(flight=>`
 
-
 <div class="flight-card">
-
 
 <div>
 
 <strong>
-◇ PROGRAMMED
+${flight.flightNumber || "FR----"}
 </strong>
 
 
@@ -1923,10 +1984,9 @@ let flight = {
 
 
 id: Date.now(),
-    flightId: Date.now(),
 
-    flightNumber:
-generateFlightNumber(),
+flightNumber: generateFlightNumber(),
+
 
 aircraft:
 document.getElementById("planned-aircraft").value,
@@ -2112,5 +2172,111 @@ Math.floor(
 
 
 return "FR" + number;
+
+}
+
+function getTodayPlannedFlights(){
+
+
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
+
+let today =
+new Date().toLocaleDateString();
+
+
+
+return planned.filter(
+flight => flight.date === today
+);
+
+
+}
+
+function confirmPlannedFlight(id){
+
+
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
+
+let flight =
+planned.find(
+f=>f.id===id
+);
+
+
+
+if(!flight)return;
+
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+flight.date =
+new Date().toLocaleDateString();
+
+
+
+flights.push(flight);
+
+
+
+localStorage.setItem(
+"aerolog_flights",
+JSON.stringify(flights)
+);
+
+
+
+planned =
+planned.filter(
+f=>f.id!==id
+);
+
+
+
+localStorage.setItem(
+"aerolog_planned",
+JSON.stringify(planned)
+);
+
+
+
+loadHome();
+
+
+}
+
+function rejectPlannedFlight(id){
+
+
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
+
+planned =
+planned.filter(
+f=>f.id!==id
+);
+
+
+
+localStorage.setItem(
+"aerolog_planned",
+JSON.stringify(planned)
+);
+
+
+
+loadHome();
+
 
 }
