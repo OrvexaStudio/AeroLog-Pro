@@ -2004,7 +2004,7 @@ placeholder="Arrival ICAO">
 
 <input
 id="planned-duration"
-value="00:00"
+placeholder="HH:MM"
 maxlength="5"
 oninput="formatFlightTime(this)">
 
