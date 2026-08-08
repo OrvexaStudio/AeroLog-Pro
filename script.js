@@ -2794,3 +2794,17 @@ flight => flight.date === today
 );
 
 }
+
+setTimeout(()=>{
+
+document.getElementById("splash").style.opacity="0";
+
+
+setTimeout(()=>{
+
+document.getElementById("splash").remove();
+
+},500);
+
+
+},2000);
