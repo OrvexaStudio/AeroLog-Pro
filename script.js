@@ -280,7 +280,10 @@ placeholder="Arrival ICAO">
 
 <input 
 id="duration"
-placeholder="Flight Time HH:MM">
+placeholder="HH:MM"
+value="00:00"
+maxlength="5"
+oninput="formatTime(this)">
 
 
 
@@ -828,3 +831,32 @@ return fleet;
 // AVVIO APP
 
 loadHome();
+
+
+function formatTime(input){
+
+let value = input.value.replace(/\D/g,"");
+
+
+if(value.length > 4){
+
+value = value.substring(0,4);
+
+}
+
+
+if(value.length >= 3){
+
+value =
+value.substring(0,2)
++
+":"
++
+value.substring(2);
+
+}
+
+
+input.value = value;
+
+}
