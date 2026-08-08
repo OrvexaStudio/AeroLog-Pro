@@ -326,27 +326,6 @@ color:white;
 
 
 
-.add{
-
-width:60px;
-
-height:60px;
-
-border-radius:50%;
-
-
-background:#E5A742!important;
-
-color:#071522!important;
-
-
-font-size:32px!important;
-
-
-margin-top:-35px;
-
-
-}
 
 input{
 
@@ -520,5 +499,23 @@ background:#123B5A;
 color:white;
 
 font-size:12px;
+
+}
+
+.bottom-nav button{
+
+flex:1;
+
+height:100%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+gap:5px;
 
 }
