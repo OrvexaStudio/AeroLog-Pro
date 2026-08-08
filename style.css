@@ -1,0 +1,137 @@
+*{
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body{
+    margin:0;
+    background:#0b1628;
+    color:white;
+}
+
+
+.app{
+    max-width:430px;
+    margin:auto;
+    min-height:100vh;
+    background:#111d33;
+}
+
+
+header{
+    padding:25px;
+    text-align:center;
+}
+
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+
+header p{
+    color:#9daac0;
+}
+
+
+
+.dashboard{
+    padding:20px;
+}
+
+
+.card{
+    background:#182941;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+
+.card span{
+    color:#9daac0;
+}
+
+
+.card strong{
+    display:block;
+    font-size:28px;
+    margin-top:8px;
+}
+
+
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+
+
+.add-flight{
+
+    width:100%;
+    padding:16px;
+
+    border:none;
+    border-radius:15px;
+
+    background:#e6a23c;
+    color:black;
+
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+
+
+.bottom-nav{
+
+    position:fixed;
+    bottom:0;
+
+    width:100%;
+    max-width:430px;
+
+    height:75px;
+
+    background:#09111f;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+}
+
+
+
+.bottom-nav button{
+
+    background:none;
+    border:none;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+
+}
+
+
+
+.center-btn{
+
+    background:#e6a23c !important;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    font-size:25px;
+
+}
