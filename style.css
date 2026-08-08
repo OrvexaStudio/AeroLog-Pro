@@ -746,14 +746,15 @@ z-index:9999;
 
 }
 
-
 #splash img{
 
 width:140px;
 
 height:140px;
 
-object-fit:contain;
+object-fit:cover;
+
+border-radius:30px;
 
 margin-bottom:25px;
 
