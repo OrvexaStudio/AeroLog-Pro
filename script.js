@@ -383,12 +383,6 @@ VFR
 </select>
 
 
-
-<textarea 
-id="notes"
-placeholder="Flight Notes">
-</textarea>
-
 <input
 id="route"
 placeholder="Route (optional)">
@@ -403,6 +397,12 @@ placeholder="METAR Departure (optional)">
 <textarea
 id="metar-arrival"
 placeholder="METAR Arrival (optional)">
+</textarea>
+
+
+<textarea
+id="notes"
+placeholder="Flight Notes">
 </textarea>
 
 
