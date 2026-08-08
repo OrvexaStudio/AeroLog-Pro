@@ -143,9 +143,7 @@ function loadLogbook(){
 ${flight.type} | ${flight.date}
 </p>
 
-<p>
-Aircraft time: ${flight.aircraftHours || 0}h
-</p>
+
 
 
         </div>
@@ -234,14 +232,11 @@ function loadNewFlight(){
 
 content.innerHTML = `
 
-
 <section class="hero">
-
 
 <p class="label">
 NEW FLIGHT
 </p>
-
 
 
 <select id="aircraft">
@@ -250,13 +245,16 @@ NEW FLIGHT
 Select Aircraft
 </option>
 
+
 <option>
 Boeing 737 MAX 8
 </option>
 
+
 <option>
 Boeing 747-400
 </option>
+
 
 </select>
 
@@ -265,54 +263,6 @@ Boeing 747-400
 <input 
 id="flight-date"
 type="date">
-
-
-
-<label>
-FLIGHT TIME
-</label>
-
-
-<div style="display:flex; gap:10px;">
-
-
-<select id="hours">
-
-<option>00</option>
-<option>01</option>
-<option>02</option>
-<option>03</option>
-<option>04</option>
-<option>05</option>
-
-</select>
-
-
-
-<select id="minutes">
-
-<option>00</option>
-<option>15</option>
-<option>30</option>
-<option>45</option>
-
-</select>
-
-
-</div>
-
-
-
-
-<label>
-TOTAL AIRCRAFT HOURS
-</label>
-
-
-<input 
-id="aircraft-hours"
-type="number"
-placeholder="Example: 120">
 
 
 
@@ -328,8 +278,13 @@ placeholder="Arrival ICAO">
 
 
 
-<select id="flight-type">
+<input 
+id="duration"
+placeholder="Flight Time HH:MM">
 
+
+
+<select id="flight-type">
 
 <option>
 IFR
@@ -352,9 +307,7 @@ placeholder="Flight Notes">
 
 
 
-<button 
-class="save"
-onclick="saveFlight()">
+<button class="save" onclick="saveFlight()">
 
 SAVE FLIGHT
 
@@ -362,7 +315,6 @@ SAVE FLIGHT
 
 
 </section>
-
 
 `;
 
@@ -377,16 +329,11 @@ function saveFlight(){
 
 let flight = {
 
-
 id: Date.now(),
 
 
 aircraft:
 document.getElementById("aircraft").value,
-
-
-aircraftHours:
-document.getElementById("aircraft-hours").value,
 
 
 departure:
@@ -397,20 +344,8 @@ arrival:
 document.getElementById("arrival").value.toUpperCase(),
 
 
-
 duration:
-
-document.getElementById("hours").value
-+
-":"
-+
-document.getElementById("minutes").value,
-
-
-
-date:
-document.getElementById("flight-date").value,
-
+document.getElementById("duration").value,
 
 
 type:
@@ -418,7 +353,11 @@ document.getElementById("flight-type").value,
 
 
 notes:
-document.getElementById("notes").value
+document.getElementById("notes").value,
+
+
+date:
+document.getElementById("flight-date").value
 
 };
 
