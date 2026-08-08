@@ -1,88 +1,172 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroLog Pro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>AeroLog Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <div class="app">
 
-    <header>
-        <h1>✈️ AeroLog Pro</h1>
+
+<header class="top">
+
+    <div>
+        <h1>AEROLOG PRO</h1>
         <p>Virtual Flight Logbook</p>
-    </header>
+    </div>
 
-
-    <main id="content">
-
-        <section class="dashboard">
-
-            <h2>Benvenuto, Pilota</h2>
-
-            <div class="card main-time">
-                <span>Flight Time Totale</span>
-                <strong>0h 00m</strong>
-            </div>
-
-
-            <div class="stats">
-
-                <div class="card">
-                    <span>Voli</span>
-                    <strong>0</strong>
-                </div>
-
-                <div class="card">
-                    <span>Aerei</span>
-                    <strong>0</strong>
-                </div>
-
-            </div>
-
-
-            <button class="add-flight">
-                + Registra Volo
-            </button>
-
-
-        </section>
-
-    </main>
+</header>
 
 
 
-    <nav class="bottom-nav">
+<main>
 
-        <button onclick="changePage('home')">
-            
-            <span>Home</span>
-        </button>
 
-        <button onclick="changePage('logbook')">
-            
-            <span>Logbook</span>
-        </button>
+<section class="hero">
 
-        <button class="center-btn" onclick="changePage('new')">
-            
-        </button>
+<p class="label">
+TOTAL FLIGHT TIME
+</p>
 
-        <button onclick="changePage('map')">
-            
-            <span>Mappa</span>
-        </button>
+<h2 id="hours">
+00h 00m
+</h2>
 
-        <button onclick="changePage('stats')">
-            
-            <span>Stats</span>
-        </button>
+<div class="flight-line"></div>
 
-    </nav>
+
+<div class="quick-data">
+
+<div>
+<span>FLIGHTS</span>
+<strong>0</strong>
+</div>
+
+
+<div>
+<span>AIRCRAFT</span>
+<strong>0</strong>
+</div>
+
+
+<div>
+<span>AIRPORTS</span>
+<strong>0</strong>
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="rank-panel">
+
+<p class="label">
+PILOT STATUS
+</p>
+
+<h3>
+Student Pilot
+</h3>
+
+<div class="progress">
+
+<div></div>
+
+</div>
+
+</section>
+
+
+
+<section class="recent">
+
+
+<p class="label">
+LAST FLIGHT
+</p>
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>B737-800</strong>
+
+<p>
+LIBR → LIRF
+</p>
+
+</div>
+
+
+<div class="time">
+01:24
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+
+<nav class="bottom-nav">
+
+
+<button class="active">
+<span>⌂</span>
+Home
+</button>
+
+
+<button>
+<span>▣</span>
+Logbook
+</button>
+
+
+
+<button class="add">
+
++
+
+</button>
+
+
+
+<button>
+<span>◌</span>
+Map
+</button>
+
+
+
+<button>
+<span>▤</span>
+Stats
+</button>
+
+
+
+</nav>
+
 
 
 </div>
