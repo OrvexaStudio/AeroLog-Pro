@@ -71,6 +71,64 @@ LAST FLIGHT
 if(page==="logbook"){
 
 
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let list="";
+
+
+flights.reverse().forEach(flight=>{
+
+
+list += `
+
+<div class="flight-card">
+
+<div>
+
+<strong>${flight.aircraft}</strong>
+
+<p>
+${flight.departure} → ${flight.arrival}
+</p>
+
+<p>
+${flight.type} | ${flight.date}
+</p>
+
+</div>
+
+
+<div class="time">
+
+${flight.duration}
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+
+
+if(list===""){
+
+list=
+`
+<div class="flight-card">
+No flight history
+</div>
+`;
+
+}
+
+
+
 content.innerHTML=`
 
 <section class="hero">
@@ -79,34 +137,20 @@ content.innerHTML=`
 FLIGHT LOGBOOK
 </p>
 
-
-<h2>0</h2>
-
+<h2>${flights.length}</h2>
 
 <p>
-Total recorded flights
+Recorded flights
 </p>
 
 
 </section>
 
 
+
 <section class="recent">
 
-<p class="label">
-HISTORY
-</p>
-
-
-<div class="flight-card">
-
-<strong>
-No flight history
-</strong>
-
-
-</div>
-
+${list}
 
 </section>
 
@@ -175,7 +219,7 @@ VFR
 
 
 
-<button class="save">
+<button class="save" onclick="saveFlight()">
 SAVE FLIGHT
 </button>
 
@@ -261,6 +305,110 @@ content.style.opacity="1";
 
 
 },200);
+
+
+}
+
+function saveFlight(){
+
+
+const aircraft = document.getElementById("aircraft").value;
+
+const departure = document.querySelectorAll("input")[0].value;
+
+const arrival = document.querySelectorAll("input")[1].value;
+
+const duration = document.querySelectorAll("input")[2].value;
+
+const type = document.getElementById("flight-type").value;
+
+
+
+if(!aircraft || !departure || !arrival || !duration){
+
+alert("Complete all flight data");
+
+return;
+
+}
+
+
+
+const flight = {
+
+id: Date.now(),
+
+aircraft: aircraft,
+
+departure: departure.toUpperCase(),
+
+arrival: arrival.toUpperCase(),
+
+duration: duration,
+
+type: type,
+
+date: new Date().toLocaleDateString()
+
+};
+
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+flights.push(flight);
+
+
+
+localStorage.setItem(
+"aerolog_flights",
+JSON.stringify(flights)
+);
+
+
+
+updateStats();
+
+
+
+changePage("logbook");
+
+
+}
+
+function updateStats(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let totalMinutes = 0;
+
+
+flights.forEach(flight=>{
+
+
+let parts = flight.duration.split(":");
+
+
+totalMinutes +=
+parseInt(parts[0])*60 +
+parseInt(parts[1]);
+
+
+});
+
+
+
+localStorage.setItem(
+"aerolog_total_minutes",
+totalMinutes
+);
 
 
 }
