@@ -1005,29 +1005,58 @@ let aircraft=[];
 let airports=[];
 
 
-
 flights.forEach(flight=>{
+
+
+if(
+flight.duration &&
+flight.duration.includes(":")
+){
 
 
 let time =
 flight.duration.split(":");
 
 
-minutes +=
-parseInt(time[0])*60+
+let hours =
+parseInt(time[0]);
+
+
+let minutesPart =
 parseInt(time[1]);
+
+
+
+if(
+!isNaN(hours) &&
+!isNaN(minutesPart)
+){
+
+
+minutes +=
+hours * 60 +
+minutesPart;
+
+
+}
+
+}
+
 
 
 if(!aircraft.includes(flight.aircraft))
 aircraft.push(flight.aircraft);
 
 
+
 if(!airports.includes(flight.departure))
 airports.push(flight.departure);
 
 
+
 if(!airports.includes(flight.arrival))
 airports.push(flight.arrival);
+
 
 
 });
