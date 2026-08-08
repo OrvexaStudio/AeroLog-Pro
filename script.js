@@ -195,11 +195,10 @@ function loadLogbook(){
 
         list += `
 
-        <div class="flight-card"
-onclick="openFlightDetails(${flight.id})">
+<div class="flight-card">
 
 
-        <div>
+<div onclick="openFlightDetails(${flight.id})">
 
        <strong>
 ${flight.flightNumber || "FR----"}
