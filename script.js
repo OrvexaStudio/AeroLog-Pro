@@ -137,9 +137,14 @@ function loadLogbook(){
 
         <div>
 
-        <strong>
-        ${flight.aircraft}
-        </strong>
+       <strong>
+${flight.flightNumber || "FR----"}
+</strong>
+
+
+<p>
+${flight.aircraft}
+</p>
 
 
         <p>
@@ -342,6 +347,8 @@ let flight = {
 id: Date.now(),
     flightId: Date.now(),
 
+    flightNumber:
+generateFlightNumber(),
 
 aircraft:
 document.getElementById("aircraft").value,
@@ -1918,6 +1925,8 @@ let flight = {
 id: Date.now(),
     flightId: Date.now(),
 
+    flightNumber:
+generateFlightNumber(),
 
 aircraft:
 document.getElementById("planned-aircraft").value,
@@ -2091,5 +2100,17 @@ value.substring(2);
 
 
 input.value = value;
+
+}
+
+function generateFlightNumber(){
+
+let number =
+Math.floor(
+1000 + Math.random() * 9000
+);
+
+
+return "FR" + number;
 
 }
