@@ -869,3 +869,57 @@ opacity:0;
 
 
 }
+
+.runway{
+
+width:180px;
+
+height:3px;
+
+background:rgba(255,255,255,.15);
+
+margin-top:5px;
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+
+.runway-line{
+
+height:3px;
+
+width:40px;
+
+background:#E5A742;
+
+position:absolute;
+
+left:-40px;
+
+animation: runwayMove 1s linear infinite;
+
+}
+
+
+
+@keyframes runwayMove{
+
+
+from{
+
+left:-40px;
+
+}
+
+
+to{
+
+left:180px;
+
+}
+
+
+}
