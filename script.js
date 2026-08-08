@@ -9,25 +9,33 @@ function changePage(page){
 
     setTimeout(()=>{
 
-        switch(page){
+       switch(page){
 
-            case "home":
-                loadHome();
-                break;
+    case "home":
+        loadHome();
+        break;
 
-            case "logbook":
-                loadLogbook();
-                break;
 
-            case "new":
-                loadNewFlight();
-                break;
+    case "logbook":
+        loadLogbook();
+        break;
 
-            case "stats":
-                loadStats();
-                break;
 
-        }
+    case "new":
+        loadNewFlight();
+        break;
+
+
+    case "calendar":
+        loadCalendar();
+        break;
+
+
+    case "stats":
+        loadStats();
+        break;
+
+}
 
         content.style.opacity = "1";
 
@@ -563,6 +571,7 @@ function loadStats(){
 
 
 let stats = getFlightStats();
+    let advanced = getAdvancedStats();
 let routes = getRouteStats();
 
 let fleet = getFleetStats();
@@ -659,7 +668,95 @@ ${stats.flights}
 
 </section>
 
+<section class="recent">
 
+
+<p class="label">
+PILOT STATISTICS
+</p>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+Average Flight
+</strong>
+
+</div>
+
+
+<div class="time">
+${advanced.average}
+</div>
+
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+Longest Flight
+</strong>
+
+</div>
+
+
+<div class="time">
+${advanced.longest}
+</div>
+
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+IFR Time
+</strong>
+
+</div>
+
+
+<div class="time">
+${advanced.ifr}
+</div>
+
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+VFR Time
+</strong>
+
+</div>
+
+
+<div class="time">
+${advanced.vfr}
+</div>
+
+
+</div>
+
+
+</section>
 
 <section class="recent">
 
@@ -868,6 +965,116 @@ flights:0
 
 }
 
+    function getAdvancedStats(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let totalMinutes = 0;
+
+let ifrMinutes = 0;
+
+let vfrMinutes = 0;
+
+let longest = 0;
+
+
+
+flights.forEach(flight=>{
+
+
+let time =
+flight.duration.split(":");
+
+
+let minutes =
+parseInt(time[0])*60 +
+parseInt(time[1]);
+
+
+
+totalMinutes += minutes;
+
+
+
+if(minutes > longest){
+
+longest = minutes;
+
+}
+
+
+
+if(flight.type === "IFR"){
+
+ifrMinutes += minutes;
+
+}
+
+
+if(flight.type === "VFR"){
+
+vfrMinutes += minutes;
+
+}
+
+
+
+});
+
+
+
+function format(minutes){
+
+
+let h =
+Math.floor(minutes/60);
+
+
+let m =
+minutes%60;
+
+
+return `${h}h ${m}m`;
+
+}
+
+
+
+return {
+
+
+average:
+
+flights.length
+?
+format(Math.floor(totalMinutes / flights.length))
+:
+"0h 0m",
+
+
+
+longest:
+format(longest),
+
+
+
+ifr:
+format(ifrMinutes),
+
+
+
+vfr:
+format(vfrMinutes)
+
+
+
+};
+
+
+}
 
 
 let time =
@@ -963,5 +1170,140 @@ let parts = date.split("-");
 
 return parts[2] + "/" + parts[1] + "/" + parts[0];
 
+
+}
+
+function loadCalendar(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let calendar = {};
+
+
+
+flights.forEach(flight=>{
+
+
+if(!calendar[flight.date]){
+
+calendar[flight.date]=[];
+
+}
+
+
+
+calendar[flight.date].push(flight);
+
+
+
+});
+
+
+
+let list = "";
+
+
+
+Object.keys(calendar)
+.sort()
+.reverse()
+.forEach(date=>{
+
+
+
+list += `
+
+
+<div class="flight-card">
+
+
+<div>
+
+
+<strong>
+${date}
+</strong>
+
+
+${calendar[date].map(flight=>`
+
+<p>
+✈ ${flight.departure} → ${flight.arrival}
+</p>
+
+
+`).join("")}
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+if(list===""){
+
+list=`
+
+<div class="flight-card">
+
+No flights recorded
+
+</div>
+
+`;
+
+}
+
+
+
+content.innerHTML = `
+
+
+<section class="hero">
+
+
+<p class="label">
+FLIGHT CALENDAR
+</p>
+
+
+<h2>
+${flights.length}
+</h2>
+
+
+<p>
+Scheduled flights
+</p>
+
+
+</section>
+
+
+
+<section class="recent">
+
+
+${list}
+
+
+</section>
+
+
+`;
 
 }
