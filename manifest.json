@@ -1,0 +1,17 @@
+{
+  "name": "AeroLog - Pilot Flight Logbook",
+  "short_name": "AeroLog",
+  "description": "Professional pilot flight logbook",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#071522",
+  "theme_color": "#071522",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
