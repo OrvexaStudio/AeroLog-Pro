@@ -1307,3 +1307,119 @@ ${list}
 `;
 
 }
+
+function getAdvancedStats(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let totalMinutes = 0;
+
+let ifrMinutes = 0;
+
+let vfrMinutes = 0;
+
+let longest = 0;
+
+
+
+flights.forEach(flight=>{
+
+
+let parts = flight.duration.split(":");
+
+
+let minutes =
+parseInt(parts[0]) * 60 +
+parseInt(parts[1]);
+
+
+
+totalMinutes += minutes;
+
+
+
+if(minutes > longest){
+
+longest = minutes;
+
+}
+
+
+
+if(flight.type === "IFR"){
+
+ifrMinutes += minutes;
+
+}
+
+
+
+if(flight.type === "VFR"){
+
+vfrMinutes += minutes;
+
+}
+
+
+
+});
+
+
+
+function formatTime(minutes){
+
+
+let hours = Math.floor(minutes / 60);
+
+let mins = minutes % 60;
+
+
+return `${hours}h ${mins}m`;
+
+}
+
+
+
+return {
+
+
+average:
+
+flights.length > 0
+
+?
+
+formatTime(
+Math.floor(totalMinutes / flights.length)
+)
+
+:
+
+"0h 0m",
+
+
+
+longest:
+
+formatTime(longest),
+
+
+
+ifr:
+
+formatTime(ifrMinutes),
+
+
+
+vfr:
+
+formatTime(vfrMinutes)
+
+
+};
+
+
+}
