@@ -1,89 +1,248 @@
 *{
-    box-sizing:border-box;
-    font-family: Arial, sans-serif;
+box-sizing:border-box;
 }
 
 
 body{
-    margin:0;
-    background:#0b1628;
-    color:white;
+
+margin:0;
+
+background:
+linear-gradient(
+160deg,
+#071522,
+#0D2940,
+#071522
+);
+
+color:#EAF4FF;
+
+font-family:Inter,sans-serif;
+
+min-height:100vh;
+
 }
+
 
 
 .app{
-    max-width:430px;
-    margin:auto;
-    min-height:100vh;
-    background:#111d33;
-}
 
+max-width:430px;
 
-header{
-    padding:25px;
-    text-align:center;
-}
+margin:auto;
 
+min-height:100vh;
 
-header h1{
-    margin:0;
-    font-size:28px;
-}
+padding-bottom:90px;
 
-
-header p{
-    color:#9daac0;
 }
 
 
 
-.dashboard{
-    padding:20px;
-}
+.top{
 
+padding:30px 25px 10px;
 
-.card{
-    background:#182941;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:15px;
-}
-
-
-.card span{
-    color:#9daac0;
-}
-
-
-.card strong{
-    display:block;
-    font-size:28px;
-    margin-top:8px;
 }
 
 
 
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+.top h1{
+
+font-family:Orbitron;
+
+letter-spacing:2px;
+
+font-size:26px;
+
+margin:0;
+
 }
 
 
 
-.add-flight{
+.top p{
 
-    width:100%;
-    padding:16px;
+color:#8CA9C2;
 
-    border:none;
-    border-radius:15px;
+margin-top:8px;
 
-    background:#e6a23c;
-    color:black;
+}
 
-    font-size:18px;
-    font-weight:bold;
+
+
+main{
+
+padding:20px;
+
+}
+
+
+
+.hero,
+.rank-panel,
+.recent{
+
+
+background:
+rgba(255,255,255,0.06);
+
+
+border:
+
+1px solid rgba(255,255,255,0.12);
+
+
+backdrop-filter:blur(15px);
+
+
+border-radius:24px;
+
+
+padding:25px;
+
+
+margin-bottom:18px;
+
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.25);
+
+
+}
+
+
+
+.label{
+
+font-size:12px;
+
+letter-spacing:2px;
+
+color:#9CB6CE;
+
+}
+
+
+
+.hero h2{
+
+font-family:Orbitron;
+
+font-size:45px;
+
+margin:15px 0;
+
+
+}
+
+
+
+.flight-line{
+
+height:2px;
+
+background:#E5A742;
+
+margin:20px 0;
+
+}
+
+
+
+.quick-data{
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+
+
+.quick-data span{
+
+display:block;
+
+font-size:11px;
+
+color:#8CA9C2;
+
+}
+
+
+
+.quick-data strong{
+
+font-size:24px;
+
+}
+
+
+
+.progress{
+
+height:8px;
+
+background:#071522;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+.progress div{
+
+height:100%;
+
+width:25%;
+
+background:#E5A742;
+
+}
+
+
+
+.flight-card{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+
+background:
+rgba(255,255,255,.05);
+
+
+padding:18px;
+
+border-radius:18px;
+
+
+}
+
+
+
+.flight-card p{
+
+margin:8px 0 0;
+
+color:#9CB6CE;
+
+}
+
+
+
+.time{
+
+font-family:Orbitron;
+
+color:#E5A742;
 
 }
 
@@ -91,19 +250,45 @@ header p{
 
 .bottom-nav{
 
-    position:fixed;
-    bottom:0;
 
-    width:100%;
-    max-width:430px;
+position:fixed;
 
-    height:75px;
+bottom:15px;
 
-    background:#09111f;
+left:50%;
 
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+transform:translateX(-50%);
+
+
+width:410px;
+
+max-width:95%;
+
+
+height:75px;
+
+
+background:
+rgba(8,20,35,.85);
+
+
+backdrop-filter:blur(20px);
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+border-radius:25px;
+
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
 
 }
 
@@ -111,27 +296,54 @@ header p{
 
 .bottom-nav button{
 
-    background:none;
-    border:none;
-    color:white;
+background:none;
 
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+border:none;
+
+color:#8CA9C2;
+
+font-size:11px;
 
 }
 
 
 
-.center-btn{
+.bottom-nav span{
 
-    background:#e6a23c !important;
+display:block;
 
-    width:60px;
-    height:60px;
+font-size:20px;
 
-    border-radius:50%;
+}
 
-    font-size:25px;
+
+
+.bottom-nav .active{
+
+color:white;
+
+}
+
+
+
+.add{
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+
+background:#E5A742!important;
+
+color:#071522!important;
+
+
+font-size:32px!important;
+
+
+margin-top:-35px;
+
 
 }
