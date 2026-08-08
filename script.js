@@ -2162,6 +2162,16 @@ document.getElementById("planned-arrival").value.toUpperCase(),
 duration:
 document.getElementById("planned-duration").value,
 
+route:
+document.getElementById("planned-route").value,
+
+
+metarDeparture:
+document.getElementById("planned-metar-departure").value,
+
+
+metarArrival:
+document.getElementById("planned-metar-arrival").value,
 
 notes:
 document.getElementById("planned-notes").value
@@ -2259,7 +2269,19 @@ placeholder="Departure ICAO">
 id="planned-arrival"
 placeholder="Arrival ICAO">
 
+<input
+id="planned-route"
+placeholder="Route (optional)">
 
+
+<input
+id="planned-metar-departure"
+placeholder="METAR Departure (optional)">
+
+
+<input
+id="planned-metar-arrival"
+placeholder="METAR Arrival (optional)">
 
 <input
 id="planned-duration"
