@@ -336,6 +336,9 @@ document.getElementById("duration").value,
 type:
 document.getElementById("flight-type").value,
 
+departureCoords: null,
+
+arrivalCoords: null, 
 
 notes:
 document.getElementById("notes").value,
@@ -565,22 +568,99 @@ loadMap();
 
 
 
-function loadMap(){
+async function loadMap(){
 
-
-let map =
-L.map("map")
-.setView(
-[41.9028,12.4964],
-5
-);
-
+let map = L.map("map")
+.setView([30,0],2);
 
 
 L.tileLayer(
 "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 ).addTo(map);
 
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+for(let flight of flights){
+
+
+let dep =
+await getAirportCoordinates(flight.departure);
+
+
+let arr =
+await getAirportCoordinates(flight.arrival);
+
+
+
+if(dep && arr){
+
+
+L.marker(dep)
+.addTo(map)
+.bindPopup(flight.departure);
+
+
+
+L.marker(arr)
+.addTo(map)
+.bindPopup(flight.arrival);
+
+
+
+L.polyline(
+
+[
+dep,
+arr
+],
+
+{
+
+color:"#E5A742",
+
+weight:4
+
+}
+
+)
+
+.addTo(map);
+
+
+}
+
+
+}
+
+
+}
+
+async function getAirportCoordinates(icao){
+
+
+let response =
+await fetch(
+`https://api.example.com/airport/${icao}`
+);
+
+
+let data =
+await response.json();
+
+
+
+return [
+
+data.latitude,
+
+data.longitude
+
+];
 
 
 }
