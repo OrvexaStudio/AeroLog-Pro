@@ -1,86 +1,232 @@
+const content = document.querySelector("main");
+
+
 function changePage(page){
 
-    const content = document.getElementById("content");
+content.style.opacity="0";
 
 
-    if(page==="home"){
-
-        content.innerHTML=`
-        <section class="dashboard">
-        <h2>Dashboard</h2>
-
-        <div class="card">
-        <span>Flight Time Totale</span>
-        <strong>0h 00m</strong>
-        </div>
-
-        </section>
-        `;
-
-    }
+setTimeout(()=>{
 
 
-    if(page==="logbook"){
+if(page==="home"){
 
-        content.innerHTML=`
-        <section class="dashboard">
-        <h2>Logbook</h2>
+content.innerHTML=`
 
-        <div class="card">
-        Nessun volo registrato
-        </div>
+<section class="hero">
 
-        </section>
-        `;
+<p class="label">
+TOTAL FLIGHT TIME
+</p>
 
-    }
+<h2>00h 00m</h2>
 
+<div class="flight-line"></div>
 
-    if(page==="new"){
+<div class="quick-data">
 
-        content.innerHTML=`
-        <section class="dashboard">
-        <h2>Nuovo Volo</h2>
+<div>
+<span>FLIGHTS</span>
+<strong>0</strong>
+</div>
 
-        <div class="card">
-        Inserimento volo in arrivo...
-        </div>
+<div>
+<span>AIRCRAFT</span>
+<strong>0</strong>
+</div>
 
-        </section>
-        `;
+<div>
+<span>AIRPORTS</span>
+<strong>0</strong>
+</div>
 
-    }
+</div>
 
-
-    if(page==="map"){
-
-        content.innerHTML=`
-        <section class="dashboard">
-        <h2>Mappa Rotte</h2>
-
-        <div class="card">
-        La tua mappa apparirà qui 
-        </div>
-
-        </section>
-        `;
-
-    }
+</section>
 
 
-    if(page==="stats"){
+<section class="recent">
 
-        content.innerHTML=`
-        <section class="dashboard">
-        <h2>Statistiche</h2>
+<p class="label">
+LAST FLIGHT
+</p>
 
-        <div class="card">
-        Nessuna statistica disponibile
-        </div>
+<div class="flight-card">
 
-        </section>
-        `;
+<div>
+<strong>No flights recorded</strong>
+<p>Add your first flight</p>
+</div>
 
-    }
+</div>
+
+</section>
+
+`;
+
+}
+
+
+
+if(page==="logbook"){
+
+
+content.innerHTML=`
+
+<section class="hero">
+
+<p class="label">
+FLIGHT LOGBOOK
+</p>
+
+
+<h2>0</h2>
+
+
+<p>
+Total recorded flights
+</p>
+
+
+</section>
+
+
+<section class="recent">
+
+<p class="label">
+HISTORY
+</p>
+
+
+<div class="flight-card">
+
+<strong>
+No flight history
+</strong>
+
+
+</div>
+
+
+</section>
+
+`;
+
+}
+
+
+
+
+if(page==="new"){
+
+
+content.innerHTML=`
+
+<section class="hero">
+
+<p class="label">
+NEW FLIGHT
+</p>
+
+
+<input placeholder="Aircraft">
+
+
+<input placeholder="Departure">
+
+
+<input placeholder="Arrival">
+
+
+<input placeholder="Flight time">
+
+
+<button class="save">
+SAVE FLIGHT
+</button>
+
+
+</section>
+
+`;
+
+}
+
+
+
+
+if(page==="map"){
+
+
+content.innerHTML=`
+
+<section class="hero">
+
+<p class="label">
+FLIGHT MAP
+</p>
+
+
+<div class="map-box">
+
+WORLD MAP
+
+</div>
+
+
+</section>
+
+
+`;
+
+}
+
+
+
+
+
+if(page==="stats"){
+
+
+content.innerHTML=`
+
+<section class="hero">
+
+<p class="label">
+STATISTICS
+</p>
+
+
+<div class="quick-data">
+
+
+<div>
+<span>TOTAL TIME</span>
+<strong>0h</strong>
+</div>
+
+
+<div>
+<span>DISTANCE</span>
+<strong>0</strong>
+</div>
+
+
+</div>
+
+
+</section>
+
+`;
+
+}
+
+
+
+content.style.opacity="1";
+
+
+},200);
+
 
 }
