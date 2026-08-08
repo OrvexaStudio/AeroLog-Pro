@@ -143,18 +143,6 @@ Boeing 737 MAX 8
 Boeing 747-400
 </option>
 
-<option>
-Boeing 737-800
-</option>
-
-<option>
-Airbus A320neo
-</option>
-
-<option>
-Airbus A350-900
-</option>
-
 </select>
 
 
