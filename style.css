@@ -483,3 +483,15 @@ resize:none;
 font-family:Inter;
 
 }
+
+#map{
+
+height:350px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
