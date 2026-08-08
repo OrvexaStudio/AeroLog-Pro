@@ -289,11 +289,17 @@ ${flight.type} | ${flight.date}
     </section>
 
 
-    <section class="recent">
+<input 
+id="search-logbook"
+placeholder="Search flights..."
+oninput="searchLogbook()">
 
-    ${list}
 
-    </section>
+<section class="recent" id="logbook-list">
+
+${list}
+
+</section>
 
     `;
 
@@ -2277,6 +2283,134 @@ JSON.stringify(planned)
 
 
 loadHome();
+
+
+}
+
+function searchLogbook(){
+
+
+let search =
+document.getElementById("search-logbook").value
+.toLowerCase();
+
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let filtered =
+flights.filter(flight=>{
+
+
+return (
+
+flight.flightNumber?.toLowerCase().includes(search)
+
+||
+
+flight.aircraft?.toLowerCase().includes(search)
+
+||
+
+flight.departure?.toLowerCase().includes(search)
+
+||
+
+flight.arrival?.toLowerCase().includes(search)
+
+||
+
+flight.type?.toLowerCase().includes(search)
+
+||
+
+flight.date?.toLowerCase().includes(search)
+
+);
+
+
+});
+
+
+
+let list="";
+
+
+
+filtered.reverse().forEach(flight=>{
+
+
+list += `
+
+
+<div class="flight-card">
+
+
+<div>
+
+
+<strong>
+${flight.flightNumber || "FR----"}
+</strong>
+
+
+<p>
+${flight.aircraft}
+</p>
+
+
+<p>
+${flight.departure}
+→
+${flight.arrival}
+</p>
+
+
+<p>
+${flight.type} | ${flight.date}
+</p>
+
+
+</div>
+
+
+<div class="time">
+
+${flight.duration}
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+if(list===""){
+
+list=`
+
+<div class="flight-card">
+
+No flights found
+
+</div>
+
+`;
+
+}
+
+
+
+document.getElementById("logbook-list").innerHTML = list;
 
 
 }
