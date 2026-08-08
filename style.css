@@ -805,39 +805,67 @@ letter-spacing:1px;
 
 font-size:35px;
 
-animation: takeoff 2s ease-in-out infinite;
-
 display:inline-block;
+
+animation: takeoff 3s ease-in-out infinite;
 
 }
 
 
 @keyframes takeoff{
 
+
 0%{
 
-transform:translateY(10px) rotate(-10deg);
+transform:translateX(-40px) translateY(15px) rotate(0deg);
 
-opacity:0.4;
+opacity:0.5;
 
 }
 
 
-40%{
+/* corsa sulla pista */
 
-transform:translateY(0) rotate(-10deg);
+35%{
+
+transform:translateX(0) translateY(15px) rotate(0deg);
 
 opacity:1;
 
 }
 
 
-100%{
+/* rotazione del muso */
 
-transform:translateY(-25px) rotate(-10deg);
+50%{
 
-opacity:0.2;
+transform:translateX(25px) translateY(5px) rotate(-15deg);
+
+opacity:1;
 
 }
+
+
+/* salita */
+
+75%{
+
+transform:translateX(45px) translateY(-25px) rotate(-20deg);
+
+opacity:1;
+
+}
+
+
+/* sparisce in quota */
+
+100%{
+
+transform:translateX(70px) translateY(-50px) rotate(-20deg);
+
+opacity:0;
+
+}
+
 
 }
