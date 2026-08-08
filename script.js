@@ -1947,3 +1947,86 @@ loadCalendar();
 
 
 }
+
+function openProgramFlight(date){
+
+
+let box =
+document.getElementById("day-flights");
+
+
+
+box.innerHTML = `
+
+
+<section class="recent">
+
+
+<p class="label">
+PROGRAM FLIGHT
+</p>
+
+
+
+<input 
+id="planned-date"
+value="${date}"
+readonly>
+
+
+<select id="planned-aircraft">
+
+<option>
+Boeing 737 MAX 8
+</option>
+
+
+<option>
+Boeing 747-400
+</option>
+
+
+</select>
+
+
+
+<input
+id="planned-departure"
+placeholder="Departure ICAO">
+
+
+
+<input
+id="planned-arrival"
+placeholder="Arrival ICAO">
+
+
+
+<input
+id="planned-duration"
+placeholder="Flight Time HH:MM">
+
+
+
+<textarea
+id="planned-notes"
+placeholder="Notes">
+</textarea>
+
+
+
+<button 
+class="save"
+onclick="savePlannedFlight()">
+
+SAVE PROGRAM
+
+</button>
+
+
+</section>
+
+
+`;
+
+}
