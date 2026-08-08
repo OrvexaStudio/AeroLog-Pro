@@ -331,26 +331,48 @@ input{
 
 width:100%;
 
+max-width:100%;
+
 padding:16px;
 
 margin:8px 0;
 
+box-sizing:border-box;
 
 background:
 rgba(255,255,255,.08);
-
 
 border:
 
 1px solid rgba(255,255,255,.15);
 
-
 border-radius:15px;
-
 
 color:white;
 
 font-size:15px;
+
+font-family:Inter,sans-serif;
+
+display:block;
+
+}
+
+input[type="date"]{
+
+appearance:none;
+
+-webkit-appearance:none;
+
+width:100%;
+
+max-width:100%;
+
+display:block;
+
+box-sizing:border-box;
+
+height:52px;
 
 }
 
@@ -966,3 +988,4 @@ input[type="date"]::-webkit-date-and-time-value{
 text-align:left;
 
 }
+
