@@ -1,155 +1,244 @@
 const content = document.querySelector("main");
 
 
+// CAMBIO PAGINA
+
 function changePage(page){
 
-content.style.opacity = "0";
+    content.style.opacity = "0";
+
+    setTimeout(()=>{
+
+        switch(page){
+
+            case "home":
+                loadHome();
+                break;
+
+            case "logbook":
+                loadLogbook();
+                break;
+
+            case "new":
+                loadNewFlight();
+                break;
+
+            case "map":
+                loadMapPage();
+                break;
+
+            case "stats":
+                loadStats();
+                break;
+
+        }
 
 
-setTimeout(()=>{
+        content.style.opacity = "1";
 
 
-switch(page){
-
-case "home":
-loadHome();
-break;
-
-
-case "logbook":
-loadLogbook();
-break;
-
-
-case "new":
-loadNewFlight();
-break;
-
-
-case "map":
-loadMapPage();
-break;
-
-
-case "stats":
-loadStats();
-break;
-
-}
-
-
-content.style.opacity="1";
-
-
-},200);
+    },200);
 
 }
 
 
 
-if(page==="logbook"){
+// HOME
+
+function loadHome(){
+
+    let stats = getFlightStats();
 
 
-let flights =
-JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+    content.innerHTML = `
+
+    <section class="hero">
+
+    <p class="label">
+    TOTAL FLIGHT TIME
+    </p>
+
+    <h2>${stats.time}</h2>
+
+
+    <div class="flight-line"></div>
+
+
+    <div class="quick-data">
+
+
+    <div>
+    <span>FLIGHTS</span>
+    <strong>${stats.flights}</strong>
+    </div>
+
+
+    <div>
+    <span>AIRCRAFT</span>
+    <strong>${stats.aircraft}</strong>
+    </div>
+
+
+    <div>
+    <span>AIRPORTS</span>
+    <strong>${stats.airports}</strong>
+    </div>
+
+
+    </div>
+
+    </section>
 
 
 
-let list="";
+    <section class="recent">
+
+    <p class="label">
+    LAST FLIGHT
+    </p>
 
 
-flights.reverse().forEach(flight=>{
+    <div class="flight-card">
+
+    <strong>
+    ${
+    stats.flights > 0 
+    ? "Flight recorded"
+    : "No flights recorded"
+    }
+    </strong>
+
+    </div>
 
 
-list += `
+    </section>
 
-<div class="flight-card">
-
-<div>
-
-<strong>${flight.aircraft}</strong>
-
-<p>
-${flight.departure} → ${flight.arrival}
-</p>
-
-<p>
-${flight.type} | ${flight.date}
-</p>
-
-</div>
-
-
-<div class="time">
-
-${flight.duration}
-
-</div>
-
-
-</div>
-
-`;
-
-});
-
-
-
-if(list===""){
-
-list=
-`
-<div class="flight-card">
-No flight history
-</div>
-`;
+    `;
 
 }
 
 
 
-content.innerHTML=`
+// LOGBOOK
+
+function loadLogbook(){
+
+    let flights =
+    JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+    let list = "";
+
+
+    flights.reverse().forEach(flight=>{
+
+
+        list += `
+
+        <div class="flight-card">
+
+
+        <div>
+
+        <strong>
+        ${flight.aircraft}
+        </strong>
+
+
+        <p>
+        ${flight.departure} → ${flight.arrival}
+        </p>
+
+
+        <p>
+        ${flight.type} | ${flight.date}
+        </p>
+
+
+        </div>
+
+
+        <div class="time">
+        ${flight.duration}
+        </div>
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+
+    if(list===""){
+
+        list=`
+
+        <div class="flight-card">
+
+        No flight history
+
+        </div>
+
+        `;
+
+    }
+
+
+
+    content.innerHTML = `
+
+
+    <section class="hero">
+
+    <p class="label">
+    FLIGHT LOGBOOK
+    </p>
+
+
+    <h2>${flights.length}</h2>
+
+
+    <p>
+    Recorded flights
+    </p>
+
+
+    </section>
+
+
+
+    <section class="recent">
+
+    ${list}
+
+    </section>
+
+
+    `;
+
+
+}
+
+
+
+// NUOVO VOLO
+
+function loadNewFlight(){
+
+
+content.innerHTML = `
+
 
 <section class="hero">
 
-<p class="label">
-FLIGHT LOGBOOK
-</p>
-
-<h2>${flights.length}</h2>
-
-<p>
-Recorded flights
-</p>
-
-
-</section>
-
-
-
-<section class="recent">
-
-${list}
-
-</section>
-
-`;
-
-}
-
-
-
-
-if(page==="new"){
-
-
-content.innerHTML=`
-
-<section class="hero">
 
 <p class="label">
 NEW FLIGHT
 </p>
+
 
 
 <select id="aircraft">
@@ -158,26 +247,28 @@ NEW FLIGHT
 Select Aircraft
 </option>
 
+
 <option>
 Boeing 737 MAX 8
 </option>
+
 
 <option>
 Boeing 747-400
 </option>
 
+
 </select>
 
 
 
-<input placeholder="Departure ICAO">
+<input id="departure" placeholder="Departure ICAO">
 
 
-<input placeholder="Arrival ICAO">
+<input id="arrival" placeholder="Arrival ICAO">
 
 
-<input placeholder="Flight Time (HH:MM)">
-
+<input id="duration" placeholder="Flight Time HH:MM">
 
 
 <select id="flight-type">
@@ -194,16 +285,20 @@ VFR
 
 
 
-<textarea placeholder="Flight Notes"></textarea>
+<textarea id="notes" placeholder="Flight Notes"></textarea>
 
 
 
 <button class="save" onclick="saveFlight()">
+
 SAVE FLIGHT
+
 </button>
 
 
+
 </section>
+
 
 `;
 
@@ -211,103 +306,61 @@ SAVE FLIGHT
 
 
 
-
-case "map":
-loadMapPage();
-break;
-
-
-
-
-
-if(page==="stats"){
-
-
-content.innerHTML=`
-
-<section class="hero">
-
-<p class="label">
-STATISTICS
-</p>
-
-
-<div class="quick-data">
-
-
-<div>
-<span>TOTAL TIME</span>
-<strong>0h</strong>
-</div>
-
-
-<div>
-<span>DISTANCE</span>
-<strong>0</strong>
-</div>
-
-
-</div>
-
-
-</section>
-
-`;
-
-}
-
-
-
-content.style.opacity="1";
-
-
-},200);
-
-
-}
+// SALVA VOLO
 
 function saveFlight(){
 
 
-const aircraft = document.getElementById("aircraft").value;
-
-const departure = document.querySelectorAll("input")[0].value;
-
-const arrival = document.querySelectorAll("input")[1].value;
-
-const duration = document.querySelectorAll("input")[2].value;
-
-const type = document.getElementById("flight-type").value;
+const flight = {
 
 
+id: Date.now(),
 
-if(!aircraft || !departure || !arrival || !duration){
+
+aircraft:
+document.getElementById("aircraft").value,
+
+
+departure:
+document.getElementById("departure").value.toUpperCase(),
+
+
+arrival:
+document.getElementById("arrival").value.toUpperCase(),
+
+
+duration:
+document.getElementById("duration").value,
+
+
+type:
+document.getElementById("flight-type").value,
+
+
+notes:
+document.getElementById("notes").value,
+
+
+date:
+new Date().toLocaleDateString()
+
+
+};
+
+
+
+if(
+!flight.aircraft ||
+!flight.departure ||
+!flight.arrival ||
+!flight.duration
+){
 
 alert("Complete all flight data");
 
 return;
 
 }
-
-
-
-const flight = {
-
-id: Date.now(),
-
-aircraft: aircraft,
-
-departure: departure.toUpperCase(),
-
-arrival: arrival.toUpperCase(),
-
-duration: duration,
-
-type: type,
-
-date: new Date().toLocaleDateString()
-
-};
 
 
 
@@ -327,121 +380,197 @@ JSON.stringify(flights)
 
 
 
-updateStats();
-
-
-
 changePage("logbook");
 
 
 }
 
-function updateStats(){
 
 
-let flights =
-JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+// STATISTICHE
+
+function loadStats(){
 
 
-
-let totalMinutes = 0;
-
-
-flights.forEach(flight=>{
-
-
-let parts = flight.duration.split(":");
-
-
-totalMinutes +=
-parseInt(parts[0])*60 +
-parseInt(parts[1]);
-
-
-});
+let stats = getFlightStats();
 
 
 
-localStorage.setItem(
-"aerolog_total_minutes",
-totalMinutes
-);
+content.innerHTML = `
 
+
+<section class="hero">
+
+
+<p class="label">
+STATISTICS
+</p>
+
+
+
+<div class="quick-data">
+
+
+<div>
+
+<span>TOTAL TIME</span>
+
+<strong>${stats.time}</strong>
+
+</div>
+
+
+
+<div>
+
+<span>FLIGHTS</span>
+
+<strong>${stats.flights}</strong>
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+`;
 
 }
 
+
+
+
+// CALCOLO DATI
+
 function getFlightStats(){
+
 
 let flights =
 JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
 
 
 let minutes = 0;
 
-let aircraft = [];
+let aircraft=[];
 
-let airports = [];
+let airports=[];
+
 
 
 flights.forEach(flight=>{
 
 
-let time = flight.duration.split(":");
+let t = flight.duration.split(":");
 
 
 minutes +=
-parseInt(time[0]) * 60 +
-parseInt(time[1]);
+parseInt(t[0])*60 +
+parseInt(t[1]);
 
 
-if(!aircraft.includes(flight.aircraft)){
+
+if(!aircraft.includes(flight.aircraft))
 aircraft.push(flight.aircraft);
-}
 
 
-if(!airports.includes(flight.departure)){
+
+if(!airports.includes(flight.departure))
 airports.push(flight.departure);
-}
 
 
-if(!airports.includes(flight.arrival)){
+
+if(!airports.includes(flight.arrival))
 airports.push(flight.arrival);
-}
+
 
 
 });
 
 
 
-let hours = Math.floor(minutes / 60);
+let hours =
+Math.floor(minutes/60);
 
-let mins = minutes % 60;
+
+let mins =
+minutes%60;
 
 
 
 return {
 
+
 time:
-`${hours.toString().padStart(2,"0")}h ${mins.toString().padStart(2,"0")}m`,
+`${hours}h ${mins}m`,
+
 
 flights:
 flights.length,
 
+
 aircraft:
 aircraft.length,
 
+
 airports:
 airports.length
+
 
 };
 
 
 }
 
+
+
+// MAPPA
+
+function loadMapPage(){
+
+
+content.innerHTML = `
+
+
+<section class="hero">
+
+
+<p class="label">
+FLIGHT MAP
+</p>
+
+
+<div id="map"></div>
+
+
+</section>
+
+
+`;
+
+
+
+setTimeout(()=>{
+
+loadMap();
+
+},100);
+
+
+}
+
+
+
 function loadMap(){
 
 
-let map = L.map('map').setView(
+let map =
+L.map("map")
+.setView(
 [41.9028,12.4964],
 5
 );
@@ -449,167 +578,9 @@ let map = L.map('map').setView(
 
 
 L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+"https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 ).addTo(map);
 
 
-
-let flights =
-JSON.parse(localStorage.getItem("aerolog_flights")) || [];
-
-
-
-let airports = {
-
-
-LIBR:[40.6576,17.9471],
-
-LIRF:[41.8003,12.2389]
-
-};
-
-
-
-flights.forEach(flight=>{
-
-
-let start =
-airports[flight.departure];
-
-
-let end =
-airports[flight.arrival];
-
-
-
-if(start && end){
-
-
-L.marker(start)
-.addTo(map)
-.bindPopup(flight.departure);
-
-
-
-L.marker(end)
-.addTo(map)
-.bindPopup(flight.arrival);
-
-
-
-L.polyline(
-
-[
-start,
-end
-],
-
-{
-
-color:"#E5A742",
-
-weight:3
-
-}
-
-)
-
-.addTo(map);
-
-
-}
-
-
-
-});
-
-
-}
-
-function loadHome(){
-
-let stats = getFlightStats();
-
-
-content.innerHTML = `
-
-<section class="hero">
-
-<p class="label">
-TOTAL FLIGHT TIME
-</p>
-
-<h2>${stats.time}</h2>
-
-<div class="flight-line"></div>
-
-
-<div class="quick-data">
-
-
-<div>
-<span>FLIGHTS</span>
-<strong>${stats.flights}</strong>
-</div>
-
-
-<div>
-<span>AIRCRAFT</span>
-<strong>${stats.aircraft}</strong>
-</div>
-
-
-<div>
-<span>AIRPORTS</span>
-<strong>${stats.airports}</strong>
-</div>
-
-
-</div>
-
-</section>
-
-
-<section class="recent">
-
-<p class="label">
-LAST FLIGHT
-</p>
-
-<div class="flight-card">
-
-<strong>
-${stats.flights > 0 ? "Flight recorded" : "No flights recorded"}
-</strong>
-
-</div>
-
-</section>
-
-`;
-
-}
-
-function loadMapPage(){
-
-content.innerHTML=`
-
-<section class="hero">
-
-<p class="label">
-FLIGHT MAP
-</p>
-
-<div id="map"></div>
-
-</section>
-
-`;
-
-setTimeout(()=>{
-
-loadMap();
-
-},100);
 
 }
