@@ -359,7 +359,7 @@ document.getElementById("notes").value,
 
 
 date:
-document.getElementById("flight-date").value
+formatDate(document.getElementById("flight-date").value)
 
 };
 
@@ -856,5 +856,19 @@ value.substring(2);
 
 
 input.value = value;
+
+}
+
+function formatDate(date){
+
+
+if(!date) return "";
+
+
+let parts = date.split("-");
+
+
+return parts[2] + "/" + parts[1] + "/" + parts[0];
+
 
 }
