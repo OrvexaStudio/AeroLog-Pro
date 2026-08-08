@@ -129,16 +129,62 @@ NEW FLIGHT
 </p>
 
 
-<input placeholder="Aircraft">
+<select id="aircraft">
+
+<option value="">
+Select Aircraft
+</option>
+
+<option>
+Boeing 737 MAX 8
+</option>
+
+<option>
+Boeing 747-400
+</option>
+
+<option>
+Boeing 737-800
+</option>
+
+<option>
+Airbus A320neo
+</option>
+
+<option>
+Airbus A350-900
+</option>
+
+</select>
 
 
-<input placeholder="Departure">
+
+<input placeholder="Departure ICAO">
 
 
-<input placeholder="Arrival">
+<input placeholder="Arrival ICAO">
 
 
-<input placeholder="Flight time">
+<input placeholder="Flight Time (HH:MM)">
+
+
+
+<select id="flight-type">
+
+<option>
+IFR
+</option>
+
+<option>
+VFR
+</option>
+
+</select>
+
+
+
+<textarea placeholder="Flight Notes"></textarea>
+
 
 
 <button class="save">
