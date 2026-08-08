@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroLog Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <h1>✈️ AeroLog Pro</h1>
+        <p>Virtual Flight Logbook</p>
+    </header>
+
+
+    <main id="content">
+
+        <section class="dashboard">
+
+            <h2>Benvenuto, Pilota</h2>
+
+            <div class="card main-time">
+                <span>Flight Time Totale</span>
+                <strong>0h 00m</strong>
+            </div>
+
+
+            <div class="stats">
+
+                <div class="card">
+                    <span>Voli</span>
+                    <strong>0</strong>
+                </div>
+
+                <div class="card">
+                    <span>Aerei</span>
+                    <strong>0</strong>
+                </div>
+
+            </div>
+
+
+            <button class="add-flight">
+                + Registra Volo
+            </button>
+
+
+        </section>
+
+    </main>
+
+
+
+    <nav class="bottom-nav">
+
+        <button onclick="changePage('home')">
+            
+            <span>Home</span>
+        </button>
+
+        <button onclick="changePage('logbook')">
+            
+            <span>Logbook</span>
+        </button>
+
+        <button class="center-btn" onclick="changePage('new')">
+            
+        </button>
+
+        <button onclick="changePage('map')">
+            
+            <span>Mappa</span>
+        </button>
+
+        <button onclick="changePage('stats')">
+            
+            <span>Stats</span>
+        </button>
+
+    </nav>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
