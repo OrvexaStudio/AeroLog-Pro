@@ -1224,6 +1224,9 @@ return parts[2] + "/" + parts[1] + "/" + parts[0];
 
 }
 
+let calendarDate = new Date();
+
+
 function loadCalendar(){
 
 
@@ -1232,11 +1235,19 @@ JSON.parse(localStorage.getItem("aerolog_flights")) || [];
 
 
 
-let today = new Date();
+let month = calendarDate.getMonth();
 
-let month = today.getMonth();
+let year = calendarDate.getFullYear();
 
-let year = today.getFullYear();
+
+
+let monthName =
+calendarDate.toLocaleString(
+"it-IT",
+{
+month:"long"
+}
+);
 
 
 
@@ -1257,18 +1268,28 @@ let flightDays = {};
 flights.forEach(flight=>{
 
 
-let date =
+let parts =
 flight.date.split("/");
 
 
-if(date.length === 3){
+if(parts.length === 3){
 
 
-let day =
-parseInt(date[0]);
+let day = parseInt(parts[0]);
+
+let fMonth = parseInt(parts[1])-1;
+
+let fYear = parseInt(parts[2]);
+
+
+
+if(fMonth === month && fYear === year){
 
 
 flightDays[day] = true;
+
+
+}
 
 
 }
@@ -1287,10 +1308,12 @@ firstDay === 0 ? 6 : firstDay - 1;
 
 
 
-for(let i=0; i<empty; i++){
+for(let i=0;i<empty;i++){
 
 calendar += `
+
 <div class="calendar-day empty"></div>
+
 `;
 
 }
@@ -1302,8 +1325,9 @@ for(let d=1; d<=days; d++){
 
 calendar += `
 
-<div class="calendar-day 
-${flightDays[d] ? "has-flight":""}">
+<div 
+class="calendar-day ${flightDays[d] ? "has-flight":""}"
+onclick="showDayFlights(${d})">
 
 
 <strong>
@@ -1333,13 +1357,27 @@ FLIGHT CALENDAR
 </p>
 
 
+<div class="calendar-header">
+
+
+<button onclick="changeMonth(-1)">
+◀
+</button>
+
+
 <h2>
-${today.toLocaleString(
-"en",
-{month:"long"}
-)}
+${monthName}
 ${year}
 </h2>
+
+
+<button onclick="changeMonth(1)">
+▶
+</button>
+
+
+</div>
+
 
 
 <div class="calendar">
@@ -1347,13 +1385,13 @@ ${year}
 
 <div class="week">
 
-<span>MON</span>
-<span>TUE</span>
-<span>WED</span>
-<span>THU</span>
-<span>FRI</span>
-<span>SAT</span>
-<span>SUN</span>
+<span>LUN</span>
+<span>MAR</span>
+<span>MER</span>
+<span>GIO</span>
+<span>VEN</span>
+<span>SAB</span>
+<span>DOM</span>
 
 </div>
 
@@ -1369,6 +1407,9 @@ ${calendar}
 
 
 </section>
+
+
+<section id="day-flights"></section>
 
 
 `;
@@ -1610,5 +1651,129 @@ alert("Backup file not valid");
 
 reader.readAsText(file);
 
+
+}
+
+function changeMonth(value){
+
+
+calendarDate.setMonth(
+calendarDate.getMonth()+value
+);
+
+
+loadCalendar();
+
+
+}
+
+function showDayFlights(day){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let month =
+calendarDate.getMonth()+1;
+
+
+let year =
+calendarDate.getFullYear();
+
+
+
+let date =
+String(day).padStart(2,"0")
++
+"/"
++
+String(month).padStart(2,"0")
++
+"/"
++
+year;
+
+
+
+let selected =
+flights.filter(
+flight=>flight.date === date
+);
+
+
+
+let box =
+document.getElementById("day-flights");
+
+
+
+if(!box) return;
+
+
+
+if(selected.length === 0){
+
+
+box.innerHTML="";
+
+return;
+
+
+}
+
+
+
+box.innerHTML = `
+
+
+<section class="recent">
+
+
+<p class="label">
+${date}
+</p>
+
+
+
+${selected.map(flight=>`
+
+
+<div class="flight-card">
+
+
+<div>
+
+<strong>
+${flight.aircraft}
+</strong>
+
+
+<p>
+${flight.departure}
+→
+${flight.arrival}
+</p>
+
+
+<p>
+${flight.duration}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`).join("")}
+
+
+
+</section>
+
+`;
 
 }
