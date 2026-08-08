@@ -989,3 +989,20 @@ text-align:left;
 
 }
 
+input[type="date"]{
+
+height:52px;
+
+display:flex;
+
+align-items:center;
+
+padding:0 16px;
+
+}
+
+input[type="date"]::-webkit-date-and-time-value{
+
+text-align:left;
+
+}
