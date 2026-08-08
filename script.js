@@ -3,66 +3,45 @@ const content = document.querySelector("main");
 
 function changePage(page){
 
-content.style.opacity="0";
+content.style.opacity = "0";
 
 
 setTimeout(()=>{
 
 
-if(page==="home"){
+switch(page){
 
-content.innerHTML=`
-
-<section class="hero">
-
-<p class="label">
-TOTAL FLIGHT TIME
-</p>
-
-<h2>${stats.time}</h2>
-
-<div class="flight-line"></div>
-
-<div class="quick-data">
-
-<div>
-<span>FLIGHTS</span>
-<strong>${stats.flights}</strong>
-</div>
-
-<div>
-<span>AIRCRAFT</span>
-<strong>${stats.aircraft}</strong>
-</div>
-
-<div>
-<span>AIRPORTS</span>
-<strong>${stats.airports}</strong>
-</div>
-
-</div>
-
-</section>
+case "home":
+loadHome();
+break;
 
 
-<section class="recent">
+case "logbook":
+loadLogbook();
+break;
 
-<p class="label">
-LAST FLIGHT
-</p>
 
-<div class="flight-card">
+case "new":
+loadNewFlight();
+break;
 
-<div>
-<strong>No flights recorded</strong>
-<p>Add your first flight</p>
-</div>
 
-</div>
+case "map":
+loadMapPage();
+break;
 
-</section>
 
-`;
+case "stats":
+loadStats();
+break;
+
+}
+
+
+content.style.opacity="1";
+
+
+},200);
 
 }
 
@@ -233,35 +212,9 @@ SAVE FLIGHT
 
 
 
-if(page==="map"){
-
-
-content.innerHTML=`
-
-<section class="hero">
-
-<p class="label">
-FLIGHT MAP
-</p>
-
-
-<div id="map"></div>
-
-
-</section>
-
-`;
-
-
-
-setTimeout(()=>{
-
-loadMap();
-
-},100);
-
-
-}
+case "map":
+loadMapPage();
+break;
 
 
 
@@ -570,5 +523,93 @@ weight:3
 
 });
 
+
+}
+
+function loadHome(){
+
+let stats = getFlightStats();
+
+
+content.innerHTML = `
+
+<section class="hero">
+
+<p class="label">
+TOTAL FLIGHT TIME
+</p>
+
+<h2>${stats.time}</h2>
+
+<div class="flight-line"></div>
+
+
+<div class="quick-data">
+
+
+<div>
+<span>FLIGHTS</span>
+<strong>${stats.flights}</strong>
+</div>
+
+
+<div>
+<span>AIRCRAFT</span>
+<strong>${stats.aircraft}</strong>
+</div>
+
+
+<div>
+<span>AIRPORTS</span>
+<strong>${stats.airports}</strong>
+</div>
+
+
+</div>
+
+</section>
+
+
+<section class="recent">
+
+<p class="label">
+LAST FLIGHT
+</p>
+
+<div class="flight-card">
+
+<strong>
+${stats.flights > 0 ? "Flight recorded" : "No flights recorded"}
+</strong>
+
+</div>
+
+</section>
+
+`;
+
+}
+
+function loadMapPage(){
+
+content.innerHTML=`
+
+<section class="hero">
+
+<p class="label">
+FLIGHT MAP
+</p>
+
+<div id="map"></div>
+
+</section>
+
+`;
+
+setTimeout(()=>{
+
+loadMap();
+
+},100);
 
 }
