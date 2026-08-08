@@ -134,38 +134,55 @@ function loadLogbook(){
 
 
         list += `
+list += `
 
-        <div class="flight-card">
+<div class="flight-card">
 
+<div>
 
-        <div>
-
-        <strong>
-        ${flight.aircraft}
-        </strong>
-
-
-        <p>
-        ${flight.departure} → ${flight.arrival}
-        </p>
+<strong>
+${flight.aircraft}
+</strong>
 
 
-        <p>
-        ${flight.type} | ${flight.date}
-        </p>
+<p>
+${flight.departure} → ${flight.arrival}
+</p>
 
 
-        </div>
+<p>
+${flight.type} | ${flight.date}
+</p>
 
 
-        <div class="time">
-        ${flight.duration}
-        </div>
+</div>
 
 
-        </div>
+<div class="time">
 
-        `;
+${flight.duration}
+
+</div>
+
+
+<div class="actions">
+
+<button onclick="editFlight(${flight.id})">
+EDIT
+</button>
+
+
+<button onclick="deleteFlight(${flight.id})">
+DELETE
+</button>
+
+
+</div>
+
+
+</div>
+
+`;
 
 
     });
@@ -661,6 +678,161 @@ data.latitude,
 data.longitude
 
 ];
+
+
+}
+
+function deleteFlight(id){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+flights =
+flights.filter(flight => flight.id !== id);
+
+
+
+localStorage.setItem(
+"aerolog_flights",
+JSON.stringify(flights)
+);
+
+
+
+loadLogbook();
+
+}
+
+function editFlight(id){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let flight =
+flights.find(f => f.id === id);
+
+
+
+if(!flight) return;
+
+
+
+content.innerHTML = `
+
+
+<section class="hero">
+
+
+<p class="label">
+EDIT FLIGHT
+</p>
+
+
+<select id="aircraft">
+
+<option>
+${flight.aircraft}
+</option>
+
+<option>
+Boeing 737 MAX 8
+</option>
+
+<option>
+Boeing 747-400
+</option>
+
+</select>
+
+
+
+<input id="departure" value="${flight.departure}">
+
+
+<input id="arrival" value="${flight.arrival}">
+
+
+<input id="duration" value="${flight.duration}">
+
+
+<select id="flight-type">
+
+<option>
+${flight.type}
+</option>
+
+<option>
+IFR
+</option>
+
+<option>
+VFR
+</option>
+
+</select>
+
+
+<button class="save" onclick="updateFlight(${id})">
+
+SAVE CHANGES
+
+</button>
+
+
+</section>
+
+`;
+
+}
+
+function updateFlight(id){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let flight =
+flights.find(f=>f.id===id);
+
+
+
+flight.aircraft =
+document.getElementById("aircraft").value;
+
+
+flight.departure =
+document.getElementById("departure").value.toUpperCase();
+
+
+flight.arrival =
+document.getElementById("arrival").value.toUpperCase();
+
+
+flight.duration =
+document.getElementById("duration").value;
+
+
+flight.type =
+document.getElementById("flight-type").value;
+
+
+
+localStorage.setItem(
+"aerolog_flights",
+JSON.stringify(flights)
+);
+
+
+
+loadLogbook();
 
 
 }
