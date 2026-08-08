@@ -821,6 +821,57 @@ No routes recorded
 
 </section>
 
+<section class="recent">
+
+
+<p class="label">
+DATABASE
+</p>
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+BACKUP SYSTEM
+</strong>
+
+
+<p>
+Save or restore your flight data
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<button class="save" onclick="exportBackup()">
+
+EXPORT BACKUP
+
+</button>
+
+
+<button class="save" onclick="document.getElementById('importFile').click()">
+
+IMPORT BACKUP
+
+</button>
+
+
+<input 
+type="file"
+id="importFile"
+accept=".json"
+style="display:none"
+onchange="importBackup(event)">
+
+
+</section>
 
 `;
 
@@ -1420,6 +1471,128 @@ formatTime(vfrMinutes)
 
 
 };
+
+
+}
+
+function exportBackup(){
+
+
+let flights =
+localStorage.getItem("aerolog_flights");
+
+
+if(!flights){
+
+alert("No flight data");
+
+return;
+
+}
+
+
+
+let blob =
+new Blob(
+[flights],
+{
+type:"application/json"
+}
+);
+
+
+
+let url =
+URL.createObjectURL(blob);
+
+
+
+let a =
+document.createElement("a");
+
+
+a.href=url;
+
+
+a.download="aerolog_backup.json";
+
+
+a.click();
+
+
+
+URL.revokeObjectURL(url);
+
+
+}
+
+function importBackup(event){
+
+
+let file =
+event.target.files[0];
+
+
+if(!file) return;
+
+
+
+let reader =
+new FileReader();
+
+
+
+reader.onload=function(e){
+
+
+try{
+
+
+let data =
+JSON.parse(e.target.result);
+
+
+
+if(!Array.isArray(data)){
+
+alert("Invalid backup");
+
+return;
+
+}
+
+
+
+localStorage.setItem(
+"aerolog_flights",
+JSON.stringify(data)
+);
+
+
+
+alert("Backup imported successfully");
+
+
+loadStats();
+
+
+
+}
+
+catch{
+
+
+alert("Backup file not valid");
+
+
+}
+
+
+};
+
+
+
+reader.readAsText(file);
 
 
 }
