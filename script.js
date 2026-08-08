@@ -454,7 +454,7 @@ if(
 !flight.aircraft ||
 !flight.departure ||
 !flight.arrival ||
-!flight.duration
+
 ){
 
 alert("Complete all flight data");
