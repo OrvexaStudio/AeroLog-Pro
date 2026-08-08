@@ -1719,6 +1719,10 @@ let flights =
 JSON.parse(localStorage.getItem("aerolog_flights")) || [];
 
 
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
 
 let month =
 calendarDate.getMonth()+1;
@@ -1742,8 +1746,15 @@ year;
 
 
 
-let selected =
+let selectedFlights =
 flights.filter(
+flight=>flight.date === date
+);
+
+
+
+let selectedPlanned =
+planned.filter(
 flight=>flight.date === date
 );
 
@@ -1755,78 +1766,6 @@ document.getElementById("day-flights");
 
 
 if(!box) return;
-
-
-
-if(selected.length === 0){
-
-
-box.innerHTML = `
-
-<section class="recent">
-
-<p class="label">
-PROGRAM FLIGHT
-</p>
-
-
-<input 
-id="planned-date"
-value="${date}"
-readonly>
-
-
-<select id="planned-aircraft">
-
-<option>
-Boeing 737 MAX 8
-</option>
-
-<option>
-Boeing 747-400
-</option>
-
-</select>
-
-
-<input
-id="planned-departure"
-placeholder="Departure ICAO">
-
-
-<input
-id="planned-arrival"
-placeholder="Arrival ICAO">
-
-
-<input
-id="planned-duration"
-placeholder="Flight Time HH:MM">
-
-
-<textarea
-id="planned-notes"
-placeholder="Notes">
-</textarea>
-
-
-<button 
-class="save"
-onclick="savePlannedFlight()">
-
-SAVE PROGRAM
-
-</button>
-
-
-</section>
-
-`;
-
-return;
-
-
-}
 
 
 
@@ -1842,7 +1781,7 @@ ${date}
 
 
 
-${selected.map(flight=>`
+${selectedFlights.map(flight=>`
 
 
 <div class="flight-card">
@@ -1851,14 +1790,17 @@ ${selected.map(flight=>`
 <div>
 
 <strong>
-${flight.aircraft}
+✈ COMPLETED
 </strong>
 
 
 <p>
-${flight.departure}
-→
-${flight.arrival}
+${flight.aircraft}
+</p>
+
+
+<p>
+${flight.departure} → ${flight.arrival}
 </p>
 
 
@@ -1874,6 +1816,56 @@ ${flight.duration}
 
 
 `).join("")}
+
+
+
+
+${selectedPlanned.map(flight=>`
+
+
+<div class="flight-card">
+
+
+<div>
+
+<strong>
+◇ PROGRAMMED
+</strong>
+
+
+<p>
+${flight.aircraft}
+</p>
+
+
+<p>
+${flight.departure} → ${flight.arrival}
+</p>
+
+
+<p>
+${flight.duration}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`).join("")}
+
+
+
+
+<button 
+class="save"
+onclick="openProgramFlight('${date}')">
+
++ PROGRAM NEW FLIGHT
+
+</button>
 
 
 
