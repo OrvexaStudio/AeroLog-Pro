@@ -412,3 +412,71 @@ totalMinutes
 
 
 }
+
+function getFlightStats(){
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let minutes = 0;
+
+let aircraft = [];
+
+let airports = [];
+
+
+flights.forEach(flight=>{
+
+
+let time = flight.duration.split(":");
+
+
+minutes +=
+parseInt(time[0]) * 60 +
+parseInt(time[1]);
+
+
+if(!aircraft.includes(flight.aircraft)){
+aircraft.push(flight.aircraft);
+}
+
+
+if(!airports.includes(flight.departure)){
+airports.push(flight.departure);
+}
+
+
+if(!airports.includes(flight.arrival)){
+airports.push(flight.arrival);
+}
+
+
+});
+
+
+
+let hours = Math.floor(minutes / 60);
+
+let mins = minutes % 60;
+
+
+
+return {
+
+time:
+`${hours.toString().padStart(2,"0")}h ${mins.toString().padStart(2,"0")}m`,
+
+flights:
+flights.length,
+
+aircraft:
+aircraft.length,
+
+airports:
+airports.length
+
+};
+
+
+}
