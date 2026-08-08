@@ -245,17 +245,21 @@ FLIGHT MAP
 </p>
 
 
-<div class="map-box">
-
-WORLD MAP
-
-</div>
+<div id="map"></div>
 
 
 </section>
 
-
 `;
+
+
+
+setTimeout(()=>{
+
+loadMap();
+
+},100);
+
 
 }
 
@@ -477,6 +481,94 @@ airports:
 airports.length
 
 };
+
+
+}
+
+function loadMap(){
+
+
+let map = L.map('map').setView(
+[41.9028,12.4964],
+5
+);
+
+
+
+L.tileLayer(
+'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+).addTo(map);
+
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let airports = {
+
+
+LIBR:[40.6576,17.9471],
+
+LIRF:[41.8003,12.2389]
+
+};
+
+
+
+flights.forEach(flight=>{
+
+
+let start =
+airports[flight.departure];
+
+
+let end =
+airports[flight.arrival];
+
+
+
+if(start && end){
+
+
+L.marker(start)
+.addTo(map)
+.bindPopup(flight.departure);
+
+
+
+L.marker(end)
+.addTo(map)
+.bindPopup(flight.arrival);
+
+
+
+L.polyline(
+
+[
+start,
+end
+],
+
+{
+
+color:"#E5A742",
+
+weight:3
+
+}
+
+)
+
+.addTo(map);
+
+
+}
+
+
+
+});
 
 
 }
