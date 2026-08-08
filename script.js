@@ -340,6 +340,7 @@ function saveFlight(){
 let flight = {
 
 id: Date.now(),
+    flightId: Date.now(),
 
 
 aircraft:
@@ -410,7 +411,6 @@ changePage("logbook");
 
 
 // ELIMINA VOLO
-
 function deleteFlight(id){
 
 
@@ -418,8 +418,16 @@ let flights =
 JSON.parse(localStorage.getItem("aerolog_flights")) || [];
 
 
+
+let deletedFlight =
+flights.find(f => f.id === id);
+
+
+
 flights =
-flights.filter(flight=>flight.id !== id);
+flights.filter(
+flight => flight.id !== id
+);
 
 
 
@@ -430,10 +438,36 @@ JSON.stringify(flights)
 
 
 
-loadLogbook();
+if(deletedFlight){
+
+
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
+
+planned =
+planned.filter(
+flight =>
+flight.flightId !== deletedFlight.flightId
+);
+
+
+
+localStorage.setItem(
+"aerolog_planned",
+JSON.stringify(planned)
+);
+
 
 }
 
+
+
+loadLogbook();
+
+
+}
 
 
 // MODIFICA VOLO
@@ -1882,6 +1916,7 @@ let flight = {
 
 
 id: Date.now(),
+    flightId: Date.now(),
 
 
 aircraft:
