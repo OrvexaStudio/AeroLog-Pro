@@ -453,7 +453,7 @@ formatDate(document.getElementById("flight-date").value)
 if(
 !flight.aircraft ||
 !flight.departure ||
-!flight.arrival ||
+!flight.arrival 
 
 ){
 
