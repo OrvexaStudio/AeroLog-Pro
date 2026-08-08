@@ -277,12 +277,11 @@ id="arrival"
 placeholder="Arrival ICAO">
 
 
-
 <input 
 id="duration"
 placeholder="HH:MM"
-value="00:00"
 maxlength="5"
+inputmode="numeric"
 oninput="formatTime(this)">
 
 
@@ -831,7 +830,6 @@ return fleet;
 // AVVIO APP
 
 loadHome();
-
 
 function formatTime(input){
 
