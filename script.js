@@ -195,7 +195,8 @@ function loadLogbook(){
 
         list += `
 
-        <div class="flight-card">
+        <div class="flight-card"
+onclick="openFlightDetails(${flight.id})">
 
 
         <div>
@@ -389,6 +390,16 @@ id="notes"
 placeholder="Flight Notes">
 </textarea>
 
+<input
+id="route"
+placeholder="Route (optional)">
+
+
+<textarea
+id="metar"
+placeholder="METAR (optional)">
+</textarea>
+
 
 
 <button class="save" onclick="saveFlight()">
@@ -441,6 +452,12 @@ document.getElementById("flight-type").value,
 
 notes:
 document.getElementById("notes").value,
+
+route:
+document.getElementById("route").value,
+
+metar:
+document.getElementById("metar").value,
 
 
 date:
@@ -2441,5 +2458,203 @@ No flights found
 
 document.getElementById("logbook-list").innerHTML = list;
 
+
+}
+
+
+function openFlightDetails(id){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let flight =
+flights.find(f=>f.id===id);
+
+
+
+if(!flight) return;
+
+
+
+content.innerHTML = `
+
+
+<section class="hero">
+
+
+<p class="label">
+FLIGHT DETAILS
+</p>
+
+
+<h2>
+${flight.flightNumber || "FR----"}
+</h2>
+
+
+<p>
+${flight.aircraft}
+</p>
+
+
+<div class="flight-line"></div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+ROUTE
+</strong>
+
+
+<p>
+${flight.departure}
+→
+${flight.arrival}
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+DATE
+</strong>
+
+
+<p>
+${flight.date}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+DURATION
+</strong>
+
+
+<p>
+${flight.duration || "--"}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+TYPE
+</strong>
+
+
+<p>
+${flight.type}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+FLIGHT ROUTE
+</strong>
+
+
+<p>
+${flight.route || "Not available"}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+METAR
+</strong>
+
+
+<p>
+${flight.metar || "Not available"}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+NOTES
+</strong>
+
+
+<p>
+${flight.notes || "No notes"}
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<button class="save"
+onclick="loadLogbook()">
+
+BACK TO LOGBOOK
+
+</button>
+
+
+</section>
+
+
+`;
 
 }
