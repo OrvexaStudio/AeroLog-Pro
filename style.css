@@ -709,3 +709,13 @@ outline:none;
 border-color:#E5A742;
 
 }
+
+.flight-card{
+cursor:pointer;
+transition:.2s;
+}
+
+
+.flight-card:active{
+transform:scale(.98);
+}
