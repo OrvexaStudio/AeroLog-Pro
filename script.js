@@ -396,8 +396,14 @@ placeholder="Route (optional)">
 
 
 <textarea
-id="metar"
-placeholder="METAR (optional)">
+id="metar-departure"
+placeholder="METAR Departure (optional)">
+</textarea>
+
+
+<textarea
+id="metar-arrival"
+placeholder="METAR Arrival (optional)">
 </textarea>
 
 
@@ -456,8 +462,12 @@ document.getElementById("notes").value,
 route:
 document.getElementById("route").value,
 
-metar:
-document.getElementById("metar").value,
+metarDeparture:
+document.getElementById("metar-departure").value,
+
+
+metarArrival:
+document.getElementById("metar-arrival").value,
 
 
 date:
@@ -2609,12 +2619,29 @@ ${flight.route || "Not available"}
 <div>
 
 <strong>
-METAR
+METAR DEPARTURE
 </strong>
 
+<p>
+${flight.metarDeparture || "Not available"}
+</p>
+
+
+</div>
+
+</div>
+
+
+<div class="flight-card">
+
+<div>
+
+<strong>
+METAR ARRIVAL
+</strong>
 
 <p>
-${flight.metar || "Not available"}
+${flight.metarArrival || "Not available"}
 </p>
 
 
