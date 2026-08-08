@@ -624,19 +624,73 @@ function loadStats(){
 let stats = getFlightStats();
 
 
+let fleet = getFleetStats();
+
+
+let fleetHTML = "";
+
+
+
+Object.keys(fleet).forEach(type=>{
+
+
+fleetHTML += `
+
+<div class="flight-card">
+
+
+<div>
+
+<strong>
+${type}
+</strong>
+
+
+<p>
+Flights: ${fleet[type].flights}
+</p>
+
+
+</div>
+
+
+
+<div class="time">
+
+${fleet[type].time}
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
 content.innerHTML = `
 
+
 <section class="hero">
+
 
 <p class="label">
 STATISTICS
 </p>
 
 
+
 <div class="quick-data">
 
 
 <div>
+
 <span>TOTAL TIME</span>
 
 <strong>
@@ -646,7 +700,9 @@ ${stats.time}
 </div>
 
 
+
 <div>
+
 <span>FLIGHTS</span>
 
 <strong>
@@ -656,10 +712,27 @@ ${stats.flights}
 </div>
 
 
+
 </div>
 
 
 </section>
+
+
+
+<section class="recent">
+
+
+<p class="label">
+FLEET TIME
+</p>
+
+
+${fleetHTML}
+
+
+</section>
+
 
 `;
 
@@ -732,6 +805,85 @@ airports.length
 
 }
 
+function getFleetStats(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+
+let fleet = {};
+
+
+
+flights.forEach(flight=>{
+
+
+if(!fleet[flight.aircraft]){
+
+
+fleet[flight.aircraft]={
+
+minutes:0,
+
+flights:0
+
+};
+
+
+}
+
+
+
+let time =
+flight.duration.split(":");
+
+
+
+fleet[flight.aircraft].minutes +=
+parseInt(time[0])*60 +
+parseInt(time[1]);
+
+
+
+fleet[flight.aircraft].flights++;
+
+
+
+});
+
+
+
+
+Object.keys(fleet).forEach(type=>{
+
+
+let hours =
+Math.floor(
+fleet[type].minutes / 60
+);
+
+
+
+let mins =
+fleet[type].minutes % 60;
+
+
+
+fleet[type].time =
+`${hours}h ${mins}m`;
+
+
+
+});
+
+
+
+return fleet;
+
+
+}
 
 
 // AVVIO APP
