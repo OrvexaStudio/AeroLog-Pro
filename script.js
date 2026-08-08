@@ -1232,86 +1232,87 @@ JSON.parse(localStorage.getItem("aerolog_flights")) || [];
 
 
 
-let calendar = {};
+let today = new Date();
+
+let month = today.getMonth();
+
+let year = today.getFullYear();
+
+
+
+let firstDay =
+new Date(year, month, 1).getDay();
+
+
+
+let days =
+new Date(year, month + 1, 0).getDate();
+
+
+
+let flightDays = {};
 
 
 
 flights.forEach(flight=>{
 
 
-if(!calendar[flight.date]){
+let date =
+flight.date.split("/");
 
-calendar[flight.date]=[];
+
+if(date.length === 3){
+
+
+let day =
+parseInt(date[0]);
+
+
+flightDays[day] = true;
+
+
+}
+
+
+});
+
+
+
+let calendar = "";
+
+
+
+let empty =
+firstDay === 0 ? 6 : firstDay - 1;
+
+
+
+for(let i=0; i<empty; i++){
+
+calendar += `
+<div class="calendar-day empty"></div>
+`;
 
 }
 
 
 
-calendar[flight.date].push(flight);
+for(let d=1; d<=days; d++){
 
 
+calendar += `
 
-});
-
-
-
-let list = "";
-
-
-
-Object.keys(calendar)
-.sort()
-.reverse()
-.forEach(date=>{
-
-
-
-list += `
-
-
-<div class="flight-card">
-
-
-<div>
+<div class="calendar-day 
+${flightDays[d] ? "has-flight":""}">
 
 
 <strong>
-${date}
+${d}
 </strong>
 
 
-${calendar[date].map(flight=>`
+${flightDays[d] ? "<span>✈</span>" : ""}
 
-<p>
-✈ ${flight.departure} → ${flight.arrival}
-</p>
-
-
-`).join("")}
-
-
-</div>
-
-
-
-</div>
-
-
-`;
-
-
-
-});
-
-
-
-if(list===""){
-
-list=`
-
-<div class="flight-card">
-
-No flights recorded
 
 </div>
 
@@ -1333,23 +1334,38 @@ FLIGHT CALENDAR
 
 
 <h2>
-${flights.length}
+${today.toLocaleString(
+"en",
+{month:"long"}
+)}
+${year}
 </h2>
 
 
-<p>
-Scheduled flights
-</p>
+<div class="calendar">
 
 
-</section>
+<div class="week">
+
+<span>MON</span>
+<span>TUE</span>
+<span>WED</span>
+<span>THU</span>
+<span>FRI</span>
+<span>SAT</span>
+<span>SUN</span>
+
+</div>
 
 
+<div class="calendar-grid">
 
-<section class="recent">
+${calendar}
+
+</div>
 
 
-${list}
+</div>
 
 
 </section>
