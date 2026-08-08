@@ -19,7 +19,7 @@ content.innerHTML=`
 TOTAL FLIGHT TIME
 </p>
 
-<h2>00h 00m</h2>
+<h2>${stats.time}</h2>
 
 <div class="flight-line"></div>
 
@@ -27,17 +27,17 @@ TOTAL FLIGHT TIME
 
 <div>
 <span>FLIGHTS</span>
-<strong>0</strong>
+<strong>${stats.flights}</strong>
 </div>
 
 <div>
 <span>AIRCRAFT</span>
-<strong>0</strong>
+<strong>${stats.aircraft}</strong>
 </div>
 
 <div>
 <span>AIRPORTS</span>
-<strong>0</strong>
+<strong>${stats.airports}</strong>
 </div>
 
 </div>
