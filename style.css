@@ -607,3 +607,37 @@ border:
 background:none;
 
 }
+
+.calendar-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+.calendar-header button{
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:20px;
+
+}
+
+
+.calendar-header h2{
+
+font-size:22px;
+
+margin:0;
+
+text-transform:capitalize;
+
+}
