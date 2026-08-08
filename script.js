@@ -563,7 +563,7 @@ function loadStats(){
 
 
 let stats = getFlightStats();
-
+let routes = getRouteStats();
 
 let fleet = getFleetStats();
 
@@ -671,6 +671,56 @@ FLEET TIME
 
 ${fleetHTML}
 
+<section class="recent">
+
+
+<p class="label">
+TOP ROUTES
+</p>
+
+
+${
+routes.length > 0
+
+?
+
+routes.map(route=>`
+
+<div class="flight-card">
+
+
+<div>
+
+<strong>
+${route[0]}
+</strong>
+
+
+<p>
+Flights: ${route[1]}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`).join("")
+
+:
+
+`
+<div class="flight-card">
+No routes recorded
+</div>
+`
+
+}
+
+
+</section>
 
 </section>
 
@@ -745,6 +795,49 @@ airports.length
 
 
 }
+
+function getRouteStats(){
+
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let routes = {};
+
+
+
+flights.forEach(flight=>{
+
+
+let route =
+flight.departure + " → " + flight.arrival;
+
+
+
+if(!routes[route]){
+
+routes[route] = 0;
+
+}
+
+
+
+routes[route]++;
+
+
+
+});
+
+
+
+return Object.entries(routes)
+.sort((a,b)=>b[1]-a[1])
+.slice(0,5);
+
+
+}
+
 
 function getFleetStats(){
 
