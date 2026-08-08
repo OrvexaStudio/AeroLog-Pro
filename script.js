@@ -50,7 +50,8 @@ function changePage(page){
 function loadHome(){
 
     let stats = getFlightStats();
-let todayFlights = getTodayPlannedFlights();
+    let todayFlights = getTodayPlannedFlights();
+    let completedToday = getTodayCompletedFlights();
 
     content.innerHTML = `
 
@@ -89,6 +90,68 @@ let todayFlights = getTodayPlannedFlights();
     </div>
 
     </section>
+
+${
+completedToday.length > 0 ?
+
+`
+
+<section class="recent">
+
+<p class="label">
+TODAY FLIGHTS
+</p>
+
+
+${completedToday.map(flight=>`
+
+<div class="flight-card"
+onclick="openFlightDetails(${flight.id})">
+
+
+<div>
+
+<strong>
+${flight.flightNumber || "FR----"}
+</strong>
+
+
+<p>
+${flight.aircraft}
+</p>
+
+
+<p>
+${flight.departure}
+→
+${flight.arrival}
+</p>
+
+
+</div>
+
+
+<div class="time">
+
+${flight.duration || "--"}
+
+</div>
+
+
+</div>
+
+
+`).join("")}
+
+
+</section>
+
+`
+
+:
+
+""
+}
 
 
     <section class="recent">
@@ -2713,5 +2776,21 @@ BACK TO LOGBOOK
 
 
 `;
+
+}
+
+function getTodayCompletedFlights(){
+
+let flights =
+JSON.parse(localStorage.getItem("aerolog_flights")) || [];
+
+
+let today =
+new Date().toLocaleDateString();
+
+
+return flights.filter(
+flight => flight.date === today
+);
 
 }
