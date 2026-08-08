@@ -149,12 +149,12 @@ ${flight.arrival}
 
 
 
-<button onclick="confirmPlannedFlight(${flight.id})">
-CONVALIDA
+<button class="complete-btn" onclick="confirmPlannedFlight(${flight.id})">
+EFFETTUATO
 </button>
 
 
-<button onclick="rejectPlannedFlight(${flight.id})">
+<button class="cancel-btn" onclick="rejectPlannedFlight(${flight.id})">
 NON EFFETTUATO
 </button>
 
