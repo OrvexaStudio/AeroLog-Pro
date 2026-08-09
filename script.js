@@ -4172,6 +4172,8 @@ done:false
 }
 
 ];
+let currentChecklist = 
+parseInt(localStorage.getItem("aerolog_current_checklist")) || 0;
 
 function loadChecklist(){
 
@@ -4198,7 +4200,7 @@ NORMAL CHECKLIST
 
 ${checklists.map((list,index)=>`
 
-<div class="check-card">
+<div class="check-card ${index === currentChecklist ? "active-check" : ""}">
 
 
 <div class="check-title" onclick="toggleChecklist(${index})">
@@ -4360,5 +4362,60 @@ localStorage.setItem(
 "aerolog_checklists",
 JSON.stringify(checklists)
 );
+checkChecklistProgress();
+}
+
+function checkChecklistProgress(){
+
+
+let checklist = checklists[currentChecklist];
+
+let items = [];
+
+
+if(checklist.sections){
+
+checklist.sections.forEach(section=>{
+
+items.push(...section.items);
+
+});
+
+}
+else{
+
+items = checklist.items;
+
+}
+
+
+
+let completed = items.every(item=>item.done);
+
+
+
+if(completed){
+
+
+if(currentChecklist < checklists.length - 1){
+
+
+currentChecklist++;
+
+
+localStorage.setItem(
+"aerolog_current_checklist",
+currentChecklist
+);
+
+
+loadChecklist();
+
+
+}
+
+
+}
+
 
 }
