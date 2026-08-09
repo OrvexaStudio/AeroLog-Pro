@@ -4229,8 +4229,7 @@ totalItems > 0
 Math.round((completedItems / totalItems) * 100)
 :
 0;
-let totalItems = 0;
-let completedItems = 0;
+
 
 
 if(active.sections){
