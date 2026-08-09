@@ -30,6 +30,9 @@ function changePage(page){
         loadCalendar();
         break;
 
+               case "checklist":
+    loadChecklist();
+    break;
 
     case "stats":
         loadStats();
@@ -2927,5 +2930,193 @@ ${flight.notes || "No notes"}
 </section>
 
 `;
+
+}
+
+let checklists = [
+
+{
+title:"PRE FLIGHT CHECKLIST",
+
+items:[
+
+{name:"PARKING BRAKE",value:"SET",done:false},
+
+{name:"BATTERY",value:"GUARD CLOSED",done:false},
+
+{name:"STANDBY POWER",value:"GUARD CLOSED",done:false},
+
+{name:"L CENTER FUEL PUMP",value:"AS REQUIRED",done:false},
+
+{name:"L AFT FUEL PUMP",value:"AS REQUIRED",done:false},
+
+{name:"APU",value:"START",done:false},
+
+{name:"APU GEN",value:"ON",done:false},
+
+{name:"POS LIGHTS",value:"STEADY",done:false}
+
+]
+
+},
+
+
+{
+title:"BEFORE START CHECKLIST",
+
+items:[
+
+{name:"FLIGHT DECK DOOR",value:"CLOSED",done:false},
+
+{name:"WINDOWS",value:"LOCKED",done:false},
+
+{name:"HYDRAULIC PANEL",value:"SET",done:false},
+
+{name:"FUEL",value:"CHECKED",done:false},
+
+{name:"PASSENGER SIGNS",value:"ON",done:false}
+
+]
+
+},
+
+
+{
+title:"ENGINE START CHECKLIST",
+
+items:[
+
+{name:"ENGINE START LEVERS",value:"IDLE DETENT",done:false},
+
+{name:"ENGINE PARAMETERS",value:"MONITOR",done:false},
+
+{name:"GENERATOR",value:"ON",done:false}
+
+]
+
+}
+
+];
+
+function loadChecklist(){
+
+content.innerHTML = `
+
+<section class="hero">
+
+<p class="label">
+AIRCRAFT
+</p>
+
+<h2>
+BOEING 737 MAX 8
+</h2>
+
+<p>
+NORMAL CHECKLIST
+</p>
+
+</section>
+
+
+<section class="recent">
+
+${checklists.map((list,index)=>`
+
+<div class="check-card">
+
+
+<div class="check-title" onclick="toggleChecklist(${index})">
+
+<span>
+▼
+${list.title}
+</span>
+
+
+</div>
+
+
+
+<div class="check-body" id="check-${index}" style="display:none">
+
+
+${list.items.map((item,i)=>`
+
+<div class="check-row">
+
+
+<div>
+${item.name}
+</div>
+
+
+<div>
+${item.value}
+</div>
+
+
+<input 
+type="checkbox"
+${item.done ? "checked":""}
+onclick="completeCheck(${index},${i})">
+
+
+</div>
+
+
+`).join("")}
+
+
+</div>
+
+
+</div>
+
+
+`).join("")}
+
+
+</section>
+
+
+`;
+
+}
+
+function toggleChecklist(id){
+
+let box =
+document.getElementById(
+"check-"+id
+);
+
+
+if(box.style.display==="none"){
+
+box.style.display="block";
+
+}
+else{
+
+box.style.display="none";
+
+}
+
+}
+
+function completeCheck(section,item){
+
+checklists[section].items[item].done =
+!checklists[section].items[item].done;
+
+
+localStorage.setItem(
+"aerolog_checklists",
+JSON.stringify(checklists)
+);
+
+
+loadChecklist();
 
 }
