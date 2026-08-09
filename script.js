@@ -4301,7 +4301,7 @@ ${item.done ? "checked":""}
 
 `;
 
-    <button 
+button 
 class="save"
 onclick="restartChecklist()">
 
