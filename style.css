@@ -1023,3 +1023,49 @@ text-align:left;
 cursor:pointer;
 
 }
+
+.details-card{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+
+.detail-row{
+
+display:flex;
+
+flex-direction:column;
+
+gap:5px;
+
+border-bottom:
+1px solid rgba(255,255,255,.1);
+
+padding-bottom:12px;
+
+}
+
+
+.detail-row span{
+
+font-size:11px;
+
+color:#8CA9C2;
+
+letter-spacing:1px;
+
+}
+
+
+.detail-row strong{
+
+font-size:15px;
+
+word-break:break-word;
+
+}
