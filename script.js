@@ -4299,15 +4299,14 @@ ${item.done ? "checked":""}
 
 </section>
 
-`;
-
-button 
+<button 
 class="save"
 onclick="restartChecklist()">
 
 RESTART CHECKLIST
 
 </button>
+`;
 
 }
 
