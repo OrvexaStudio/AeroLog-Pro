@@ -2079,10 +2079,12 @@ ${flight.duration}
 
 
 
-
 ${selectedPlanned.map(flight=>`
 
-<div class="flight-card">
+<div 
+class="flight-card clickable"
+onclick="openPlannedFlightDetails(${flight.id})">
+
 
 <div>
 
@@ -2098,11 +2100,6 @@ ${flight.aircraft}
 
 <p>
 ${flight.departure} → ${flight.arrival}
-</p>
-
-
-<p>
-${flight.duration}
 </p>
 
 
@@ -2854,6 +2851,129 @@ ${flight.metarArrival || "N/A"}
 DURATION:
 ${flight.duration || "--"}
 </p>
+
+
+</div>
+
+
+</section>
+
+`;
+
+}
+
+function openPlannedFlightDetails(id){
+
+let planned =
+JSON.parse(localStorage.getItem("aerolog_planned")) || [];
+
+
+let flight =
+planned.find(f=>f.id===id);
+
+
+if(!flight) return;
+
+
+
+content.innerHTML = `
+
+<section class="hero">
+
+<p class="label">
+PROGRAMMED FLIGHT
+</p>
+
+
+<h2>
+${flight.flightNumber || "FR----"}
+</h2>
+
+
+</section>
+
+
+<section class="recent">
+
+
+<div class="flight-card details-card">
+
+
+<div class="detail-row">
+
+<span>AIRCRAFT</span>
+
+<strong>
+${flight.aircraft}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>ROUTE</span>
+
+<strong>
+${flight.departure} → ${flight.arrival}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>FLIGHT ROUTE</span>
+
+<strong>
+${flight.route || "Not inserted"}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>METAR DEPARTURE</span>
+
+<strong>
+${flight.metarDeparture || "Not inserted"}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>METAR ARRIVAL</span>
+
+<strong>
+${flight.metarArrival || "Not inserted"}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>DURATION</span>
+
+<strong>
+${flight.duration || "--"}
+</strong>
+
+</div>
+
+
+<div class="detail-row">
+
+<span>NOTES</span>
+
+<strong>
+${flight.notes || "No notes"}
+</strong>
+
+</div>
 
 
 </div>
