@@ -1017,3 +1017,9 @@ input[type="date"]::-webkit-date-and-time-value{
 text-align:left;
 
 }
+
+.clickable{
+
+cursor:pointer;
+
+}
