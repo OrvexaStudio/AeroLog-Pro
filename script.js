@@ -4239,10 +4239,9 @@ ${item.name}
 ${item.value}
 </div>
 
-
 <input 
 type="checkbox"
-onclick="event.stopPropagation(); completeCheck(${index},${s},${i})"
+onclick="completeCheck(${index},${s},${i}); return false;"
 ${item.done ? "checked":""}
 >
 
@@ -4274,7 +4273,7 @@ ${item.value}
 
 <input 
 type="checkbox"
-onclick="event.stopPropagation(); completeCheck(${index},null,${i})"
+onclick="completeCheck(${index},null,${i}); return false;"
 ${item.done ? "checked":""}
 >
 
@@ -4356,6 +4355,6 @@ JSON.stringify(checklists)
 );
 
 
-loadChecklist();
+
 
 }
