@@ -1343,3 +1343,54 @@ border:2px solid #e87517;
 box-shadow:0 0 20px rgba(232,117,23,0.5);
 
 }
+
+.check-progress{
+
+background:#111;
+border:1px solid #333;
+border-radius:16px;
+padding:18px;
+margin-top:20px;
+}
+
+
+.check-progress h3{
+
+margin:0;
+font-size:18px;
+font-weight:700;
+letter-spacing:1px;
+
+}
+
+
+.check-progress p{
+
+margin:8px 0 15px;
+color:#aaa;
+font-size:14px;
+
+}
+
+
+
+.progress-bar{
+
+width:100%;
+height:10px;
+background:#222;
+border-radius:10px;
+overflow:hidden;
+
+}
+
+
+
+.progress-fill{
+
+height:100%;
+background:#e87517;
+border-radius:10px;
+transition:width 0.4s ease;
+
+}
