@@ -1206,3 +1206,67 @@ font-size:16px;
 line-height:1.5;
 
 }
+
+.details-card{
+
+background:rgba(255,255,255,.05);
+
+border-radius:18px;
+
+padding:20px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+
+.detail-row{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+width:100%;
+
+text-align:center;
+
+padding:12px 0;
+
+border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+
+.detail-row:last-child{
+
+border-bottom:none;
+
+}
+
+
+.detail-row span{
+
+font-size:11px;
+
+color:#8CA9C2;
+
+letter-spacing:1px;
+
+margin-bottom:8px;
+
+}
+
+
+.detail-row strong{
+
+font-size:16px;
+
+line-height:1.5;
+
+}
