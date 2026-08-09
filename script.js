@@ -187,7 +187,8 @@ TODAY PROGRAMMED FLIGHTS
 
 ${todayFlights.map(flight=>`
 
-<div class="flight-card">
+<div class="flight-card clickable"
+onclick="openFlightDetails(${flight.id})">
 
 <div>
 
