@@ -4299,6 +4299,14 @@ ${item.done ? "checked":""}
 
 `;
 
+    <button 
+class="save"
+onclick="restartChecklist()">
+
+RESTART CHECKLIST
+
+</button>
+
 }
 
 function toggleChecklist(id){
