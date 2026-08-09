@@ -4249,6 +4249,30 @@ BOEING 737 MAX 8
 NORMAL CHECKLIST
 </p>
 
+
+<div class="check-progress">
+
+<h3>
+${active.title}
+</h3>
+
+<p>
+${completedItems} / ${totalItems} COMPLETED
+</p>
+
+
+<div class="progress-bar">
+
+<div 
+class="progress-fill"
+style="width:${progress}%">
+</div>
+
+</div>
+
+
+</div>
+
 </section>
 
 
