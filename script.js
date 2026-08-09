@@ -4174,7 +4174,14 @@ done:false
 ];
 let currentChecklist = 
 parseInt(localStorage.getItem("aerolog_current_checklist")) || 0;
+let savedChecklists =
+JSON.parse(localStorage.getItem("aerolog_checklists"));
 
+if(savedChecklists){
+
+checklists = savedChecklists;
+
+}
 function loadChecklist(){
 
 content.innerHTML = `
@@ -4416,5 +4423,55 @@ loadChecklist();
 
 }
 
+
+}
+
+function restartChecklist(){
+
+checklists.forEach(list=>{
+
+if(list.sections){
+
+list.sections.forEach(section=>{
+
+section.items.forEach(item=>{
+
+item.done = false;
+
+});
+
+});
+
+}
+
+else{
+
+list.items.forEach(item=>{
+
+item.done = false;
+
+});
+
+}
+
+});
+
+
+currentChecklist = 0;
+
+
+localStorage.setItem(
+"aerolog_current_checklist",
+0
+);
+
+
+localStorage.setItem(
+"aerolog_checklists",
+JSON.stringify(checklists)
+);
+
+
+loadChecklist();
 
 }
