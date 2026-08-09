@@ -4321,14 +4321,18 @@ box.style.display="none";
 }
 
 }
-function completeCheck(section,subsection,item,checkbox){
+function completeCheck(section,subsection,item){
 
 if(subsection !== null){
 
 checklists[section]
 .sections[subsection]
 .items[item]
-.done = checkbox.checked;
+.done =
+!checklists[section]
+.sections[subsection]
+.items[item]
+.done;
 
 }
 
@@ -4336,7 +4340,10 @@ else{
 
 checklists[section]
 .items[item]
-.done = checkbox.checked;
+.done =
+!checklists[section]
+.items[item]
+.done;
 
 }
 
