@@ -4219,22 +4219,16 @@ list.sections
 
 ?
 
-list.sections.map((section,sIndex)=>`
+list.sections.map((section,s)=>`
 
-${section.title ? `
-
-<p class="check-section-title">
+<h4>
 ${section.title}
-</p>
-
-` : ""}
-
+</h4>
 
 
 ${section.items.map((item,i)=>`
 
 <div class="check-row">
-
 
 <div>
 ${item.name}
@@ -4248,8 +4242,9 @@ ${item.value}
 
 <input 
 type="checkbox"
+onclick="event.stopPropagation(); completeCheck(${index},${s},${i})"
 ${item.done ? "checked":""}
-onclick="event.stopPropagation(); completeCheck(${index},${sIndex},${i})">
+>
 
 
 </div>
@@ -4263,11 +4258,9 @@ onclick="event.stopPropagation(); completeCheck(${index},${sIndex},${i})">
 
 :
 
-
 list.items.map((item,i)=>`
 
 <div class="check-row">
-
 
 <div>
 ${item.name}
@@ -4278,10 +4271,12 @@ ${item.name}
 ${item.value}
 </div>
 
+
 <input 
 type="checkbox"
+onclick="event.stopPropagation(); completeCheck(${index},null,${i})"
 ${item.done ? "checked":""}
-onclick="event.stopPropagation(); completeCheck(${index},null,${i})">
+>
 
 
 </div>
@@ -4290,7 +4285,6 @@ onclick="event.stopPropagation(); completeCheck(${index},null,${i})">
 `).join("")
 
 }
-
 
 
 </div>
@@ -4303,7 +4297,6 @@ onclick="event.stopPropagation(); completeCheck(${index},null,${i})">
 
 
 </section>
-
 
 `;
 
@@ -4330,33 +4323,31 @@ box.style.display="none";
 
 }
 
-function completeCheck(section,subSection,item){
+function completeCheck(section,subsection,item){
 
+if(subsection !== null){
 
-if(
-subSection === null
-){
-
-checklists[section].items[item].done =
-!checklists[section].items[item].done;
+checklists[section]
+.sections[subsection]
+.items[item]
+.done =
+!checklists[section]
+.sections[subsection]
+.items[item]
+.done;
 
 }
 
 else{
 
-
 checklists[section]
-.sections[subSection]
 .items[item]
 .done =
 !checklists[section]
-.sections[subSection]
 .items[item]
 .done;
 
-
 }
-
 
 
 localStorage.setItem(
