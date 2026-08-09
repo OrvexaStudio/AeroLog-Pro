@@ -4171,6 +4171,8 @@ done:false
 
 }
 
+];
+
 function loadChecklist(){
 
 content.innerHTML = `
