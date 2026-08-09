@@ -4172,8 +4172,7 @@ done:false
 }
 
 ];
-let currentChecklist = 
-parseInt(localStorage.getItem("aerolog_current_checklist")) || 0;
+
 let savedChecklists =
 JSON.parse(localStorage.getItem("aerolog_checklists"));
 
