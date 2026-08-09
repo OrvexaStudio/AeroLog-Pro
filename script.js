@@ -4186,7 +4186,49 @@ Number(localStorage.getItem("aerolog_current_checklist")) || 0;
 function loadChecklist(){
 
 let active = checklists[currentChecklist];
+let totalItems = 0;
+let completedItems = 0;
 
+
+if(active.sections){
+
+active.sections.forEach(section=>{
+
+section.items.forEach(item=>{
+
+totalItems++;
+
+if(item.done){
+completedItems++;
+}
+
+});
+
+});
+
+}
+
+else{
+
+active.items.forEach(item=>{
+
+totalItems++;
+
+if(item.done){
+completedItems++;
+}
+
+});
+
+}
+
+
+let progress =
+totalItems > 0
+?
+Math.round((completedItems / totalItems) * 100)
+:
+0;
 let totalItems = 0;
 let completedItems = 0;
 
@@ -4247,6 +4289,28 @@ BOEING 737 MAX 8
 <p>
 NORMAL CHECKLIST
 </p>
+
+
+<div class="check-progress">
+
+<div class="progress-text">
+
+${checklists[currentChecklist].title}
+
+<span>
+${completedItems} / ${totalItems} COMPLETED
+</span>
+
+</div>
+
+
+<div class="progress-bar">
+
+<div class="progress-fill" style="width:${progress}%"></div>
+
+</div>
+
+</div>
 
 
 <div class="check-progress">
