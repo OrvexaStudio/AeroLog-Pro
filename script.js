@@ -4265,7 +4265,7 @@ else{
 }
 
 
-let progress =
+
 totalItems > 0
 ?
 Math.round((completedItems / totalItems) * 100)
