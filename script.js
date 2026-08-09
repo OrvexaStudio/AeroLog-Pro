@@ -2938,23 +2938,60 @@ let checklists = [
 {
 title:"PRE FLIGHT CHECKLIST",
 
+sections:[
+
+{
+title:"",
+
 items:[
 
 {name:"PARKING BRAKE",value:"SET",done:false},
-
 {name:"BATTERY",value:"GUARD CLOSED",done:false},
-
 {name:"STANDBY POWER",value:"GUARD CLOSED",done:false},
-
 {name:"L CENTER FUEL PUMP",value:"AS REQUIRED",done:false},
-
 {name:"L AFT FUEL PUMP",value:"AS REQUIRED",done:false},
-
 {name:"APU",value:"START",done:false},
-
 {name:"APU GEN",value:"ON",done:false},
+{name:"POS LIGHTS",value:"STEADY",done:false},
+{name:"LOGO LIGHT",value:"AS REQUIRED",done:false},
+{name:"CABIN LIGHTS",value:"AS REQUIRED",done:false},
+{name:"EMER EXIT LIGHTS",value:"GUARD CLOSED",done:false},
+{name:"PASSENGER SIGNS",value:"ON",done:false},
+{name:"PACKS",value:"AUTO / HIGH",done:false},
+{name:"IRS MODE SELECTORS",value:"OFF > NAV",done:false},
+{name:"FMC",value:"SET",done:false}
 
-{name:"POS LIGHTS",value:"STEADY",done:false}
+]
+
+},
+
+
+{
+title:"Request Flight-plan Clearance",
+
+items:[
+
+{name:"TRANSPONDER",value:"SET",done:false},
+{name:"IAS / MACH SPEED",value:"SET",done:false},
+{name:"HDG / TAKEOFF RWY",value:"SET",done:false},
+{name:"INITIAL ALT",value:"SET",done:false},
+{name:"YAW DAMPER",value:"ON",done:false},
+{name:"WINDOW HEAT",value:"ON",done:false},
+{name:"FLIGHT ALTITUDE",value:"SET",done:false},
+{name:"LANDING ALTITUDE",value:"SET",done:false},
+{name:"FLIGHT DIRECTORS",value:"ON",done:false},
+{name:"LNAV",value:"AS REQUIRED",done:false},
+{name:"VNAV",value:"AS REQUIRED",done:false},
+{name:"MINIMUMS REF",value:"BARO or RADIO",done:false},
+{name:"MINIMUMS",value:"SET",done:false},
+{name:"ALTIMETER REF",value:"IN or HPA",done:false},
+{name:"AUTO BRAKE",value:"RTO",done:false},
+{name:"COM RADIOS",value:"SET",done:false},
+{name:"DOORS",value:"CLOSED",done:false}
+
+]
+
+}
 
 ]
 
@@ -2964,17 +3001,64 @@ items:[
 {
 title:"BEFORE START CHECKLIST",
 
+sections:[
+
+{
+title:"Request Pushback & Startup Clearance",
+
 items:[
 
-{name:"FLIGHT DECK DOOR",value:"CLOSED",done:false},
+{
+name:"AUTOTHROTTLE",
+value:"ARM",
+done:false
+},
 
-{name:"WINDOWS",value:"LOCKED",done:false},
+{
+name:"L & R C FUEL PUMPS",
+value:"AS REQUIRED",
+done:false
+},
 
-{name:"HYDRAULIC PANEL",value:"SET",done:false},
+{
+name:"A & F FUEL PUMPS",
+value:"ON",
+done:false
+},
 
-{name:"FUEL",value:"CHECKED",done:false},
+{
+name:"ELEC HYD PUMPS",
+value:"ON",
+done:false
+},
 
-{name:"PASSENGER SIGNS",value:"ON",done:false}
+{
+name:"ANTI COLL LIGHT",
+value:"ON",
+done:false
+},
+
+{
+name:"PARKING BRAKE",
+value:"SET",
+done:false
+},
+
+{
+name:"GROUND EQUIPMENT",
+value:"REMOVED",
+done:false
+},
+
+{
+name:"ENGINE AREA",
+value:"CLEAR",
+done:false
+}
+
+]
+
+}
 
 ]
 
@@ -2986,17 +3070,1106 @@ title:"ENGINE START CHECKLIST",
 
 items:[
 
-{name:"ENGINE START LEVERS",value:"IDLE DETENT",done:false},
+{
+name:"SEC DISPLAY UNIT",
+value:"ENGINE",
+done:false
+},
 
-{name:"ENGINE PARAMETERS",value:"MONITOR",done:false},
+{
+name:"PACKS",
+value:"OFF",
+done:false
+},
 
-{name:"GENERATOR",value:"ON",done:false}
+{
+name:"ENGINE 1 START SWITCH",
+value:"GND",
+done:false
+},
+
+{
+name:"ENGINE 1 FUEL CONTROL LEVER",
+value:"RUN",
+done:false
+},
+
+{
+name:"ENGINE 2 START SWITCH",
+value:"GND",
+done:false
+},
+
+{
+name:"ENGINE 2 FUEL CONTROL LEVER",
+value:"RUN",
+done:false
+}
+
+]
+
+},
+
+{
+title:"BEFORE TAXI CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"GENERATORS 1 & 2",
+value:"ON",
+done:false
+},
+
+{
+name:"PROBE HEAT",
+value:"ON",
+done:false
+},
+
+{
+name:"WING ANTI ICE",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"ENGINE ANTI ICE",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"PACKS",
+value:"AUTO",
+done:false
+},
+
+{
+name:"ISOLATION VALVE",
+value:"AUTO",
+done:false
+},
+
+{
+name:"APU BLEED",
+value:"OFF",
+done:false
+},
+
+{
+name:"APU",
+value:"OFF",
+done:false
+},
+
+{
+name:"ENG START SWITCHES",
+value:"CONT",
+done:false
+},
+
+{
+name:"FLAPS",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"ELEVATOR TRIM",
+value:"SET FOR TAKE-OFF",
+done:false
+},
+
+{
+name:"FLIGHT CONTROLS",
+value:"FREE AND CORRECT",
+done:false
+},
+
+{
+name:"RECALL (737-800 only)",
+value:"CHECK",
+done:false
+},
+
+{
+name:"LOWER DISPLAY UNIT (DU)",
+value:"OFF",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Request Taxi Clearance",
+
+items:[
+
+{
+name:"TAXI LIGHTS",
+value:"ON",
+done:false
+},
+
+{
+name:"RWY TURN-OFF LIGHTS",
+value:"AS REQUIRED",
+done:false
+}
 
 ]
 
 }
 
-];
+]
+
+},
+
+    {
+title:"TAXI CHECKLIST",
+
+items:[
+
+{
+name:"TAXI to assigned runway",
+value:"SPEED Max. 20 knots",
+done:false
+},
+
+{
+name:"BRKS/GYRO/TURN COORDINATOR",
+value:"CHECK during taxi",
+done:false
+}
+
+]
+
+},
+{
+title:"BEFORE TAKE-OFF CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"PARKING BRAKE",
+value:"SET",
+done:false
+},
+
+{
+name:"FUEL FLOW",
+value:"RESET, then RATE",
+done:false
+},
+
+{
+name:"C FUEL PUMPS",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"DE-ICE",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"CABIN LIGHTS",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"FLIGHT INSTRUMENTS",
+value:"CHECK",
+done:false
+},
+
+{
+name:"ENGINE INSTRUMENTS",
+value:"CHECK",
+done:false
+},
+
+{
+name:"TAKE-OFF DATA",
+value:"(V1, VR, V2) CHECK",
+done:false
+},
+
+{
+name:"NAV EQUIPMENT",
+value:"CHECK",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Request Takeoff Clearance",
+
+items:[
+
+{
+name:"LANDING LIGHTS",
+value:"ON",
+done:false
+},
+
+{
+name:"STROBE LIGHT",
+value:"ON",
+done:false
+},
+
+{
+name:"TAXI LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"TRANSPONDER",
+value:"TA/RA",
+done:false
+},
+
+{
+name:"TFC",
+value:"PUSH ON",
+done:false
+},
+
+{
+name:"CLOCK",
+value:"START",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"AFTER TAKE-OFF CHECKLIST",
+
+items:[
+
+{
+name:"POSITIVE RATE OF CLIMB",
+value:"GEAR UP",
+done:false
+},
+
+{
+name:"AUTO-BRAKE",
+value:"OFF",
+done:false
+},
+
+{
+name:"ENGINE START SWITCHES",
+value:"OFF",
+done:false
+},
+
+{
+name:"GEAR LEVER",
+value:"OFF POSITION",
+done:false
+},
+
+{
+name:"RWY TURN-OFF LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"CABIN LIGHTS",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+},
+
+    {
+title:"CLIMB-OUT CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"CMD A or B",
+value:"ENGAGE (when suitable)",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Passing TA (Transition-Altitude)",
+
+items:[
+
+{
+name:"ALTIMETER",
+value:"PUSH TO SET STD (29.92 / 1013)",
+done:false
+},
+
+{
+name:"BELOW 10'000FT",
+value:"MAX. 250 KIAS",
+done:false
+},
+
+{
+name:"ATC",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Passing 10'000 ft",
+
+items:[
+
+{
+name:"LANDING LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"FASTEN SEAT BELTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"C FUEL PUMPS",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"CRUISE & DESCENT PREPARATION CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"ENGINE & INSTRUMENTS",
+value:"MONITOR",
+done:false
+},
+
+{
+name:"FUEL QUANTITY",
+value:"CHECK",
+done:false
+},
+
+{
+name:"LIGHTS",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Before TOD",
+
+items:[
+
+{
+name:"ATIS / AIRPORT INFORMATION",
+value:"CHECK",
+done:false
+},
+
+{
+name:"ALTIMETER",
+value:"CHECK",
+done:false
+},
+
+{
+name:"RADIOS",
+value:"SET",
+done:false
+},
+
+{
+name:"RESET MCP ALTITUDE",
+value:"CHECK",
+done:false
+},
+
+{
+name:"FMC APPR SPEED REF",
+value:"SET",
+done:false
+},
+
+{
+name:"LOCALIZER FREQ",
+value:"SET",
+done:false
+},
+
+{
+name:"ILS LOC COURSE",
+value:"SET",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Descent",
+
+items:[
+
+{
+name:"DE-ICE",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"LANDING ALT",
+value:"CHECK",
+done:false
+},
+
+{
+name:"RECALL (737-800 only)",
+value:"CHECK",
+done:false
+},
+
+{
+name:"RADIO ALT / BARO MIN",
+value:"SET, CHECK",
+done:false
+},
+
+{
+name:"AUTO BRAKE",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Passing TA (Transition-Altitude)",
+
+items:[
+
+{
+name:"ALTIMETER",
+value:"RESET TO LOCAL",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Below 10'000 ft",
+
+items:[
+
+{
+name:"SPEED",
+value:"250 KIAS",
+done:false
+},
+
+{
+name:"LANDING LIGHTS",
+value:"ON",
+done:false
+},
+
+{
+name:"PASSENGER SIGNS",
+value:"ON",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"",
+
+items:[
+
+{
+name:"Check Weather (ATIS, Flight Services)",
+value:"",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"APPROACH CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"ALTIMETER",
+value:"CHECK",
+done:false
+},
+
+{
+name:"LOCALIZER FREQ",
+value:"CHECK",
+done:false
+},
+
+{
+name:"LOCALIZER COURSE",
+value:"CHECK",
+done:false
+},
+
+{
+name:"APP",
+value:"ARM",
+done:false
+},
+
+{
+name:"GLIDESLOPE ALIVE",
+value:"GEAR DOWN",
+done:false
+},
+
+{
+name:"FLAPS",
+value:"15",
+done:false
+},
+
+{
+name:"SPEED BRAKE",
+value:"ARM",
+done:false
+},
+
+{
+name:"2ND AUTOPILOT",
+value:"ARM (when ILS established)",
+done:false
+},
+
+{
+name:"ENGINE START SWITCHES",
+value:"CONT",
+done:false
+},
+
+{
+name:"LANDING FLAPS",
+value:"SET",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"LANDING CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"GO-AROUND ALTITUDE",
+value:"SET",
+done:false
+},
+
+{
+name:"RWY TURN-OFF LIGHTS",
+value:"ON",
+done:false
+},
+
+{
+name:"LANDING GEAR",
+value:"CHECK DOWN",
+done:false
+},
+
+{
+name:"AUTOPILOT",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"AUTO-THRUST",
+value:"AS REQUIRED",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"After Touch-Down",
+
+items:[
+
+{
+name:"THRUST REVERSE",
+value:"ENGAGE",
+done:false
+},
+
+{
+name:"AUTOPILOT",
+value:"OFF",
+done:false
+},
+
+{
+name:"AUTOTHRUST",
+value:"OFF",
+done:false
+},
+
+{
+name:"AT 60 KTS",
+value:"REV THRUST TO IDLE",
+done:false
+},
+
+{
+name:"AT 30 KTS",
+value:"AUTO-BRAKE DISENGAGE",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"AFTER LANDING CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"TRANSPONDER",
+value:"OFF",
+done:false
+},
+
+{
+name:"FLAPS",
+value:"RETRACT",
+done:false
+},
+
+{
+name:"SPEED BRAKE",
+value:"DOWN",
+done:false
+},
+
+{
+name:"LANDING LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"STROBE LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"TAXI LIGHTS",
+value:"ON",
+done:false
+},
+
+{
+name:"CABIN LIGHTS",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"ANTI ICE",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"APU",
+value:"START / CHECK RUN",
+done:false
+},
+
+{
+name:"PROBE HEAT",
+value:"OFF",
+done:false
+},
+
+{
+name:"ENG START SWITCHES",
+value:"OFF",
+done:false
+},
+
+{
+name:"AUTO-BRAKE",
+value:"OFF",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Taxi to Assigned Gate/Parking (Speed Max 20 knots)",
+
+items:[
+
+{
+name:"RWY TURNOFF LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"APU GEN",
+value:"ON / CHECK VOLTS",
+done:false
+}
+
+]
+
+},
+
+
+{
+title:"Turning Into The Gate:",
+
+items:[
+
+{
+name:"TAXI LIGHTS",
+value:"OFF",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"PARKING / SHUTDOWN CHECKLIST",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"PARKING BRAKES",
+value:"SET",
+done:false
+},
+
+{
+name:"ENGINE FUEL CONTROL LEVERS",
+value:"OFF",
+done:false
+},
+
+{
+name:"GROUND CONTACT",
+value:"ESTABLISH",
+done:false
+},
+
+{
+name:"GROUND OPERATIONS",
+value:"AS REQUIRED (FMC)",
+done:false
+},
+
+{
+name:"PASSENGER SIGNS",
+value:"OFF",
+done:false
+},
+
+{
+name:"APU BLEED AIR",
+value:"ON",
+done:false
+},
+
+{
+name:"ANTI COLL LIGHT",
+value:"OFF",
+done:false
+},
+
+{
+name:"FUELPUMPS",
+value:"OFF",
+done:false
+},
+
+{
+name:"L AFT FUEL PUMP",
+value:"ON",
+done:false
+},
+
+{
+name:"ANTI-ICE",
+value:"OFF",
+done:false
+},
+
+{
+name:"ELEC HYD PUMPS",
+value:"OFF",
+done:false
+},
+
+{
+name:"ISOLATION VALVE",
+value:"OPEN",
+done:false
+},
+
+{
+name:"FLIGHT DIRECTOR",
+value:"OFF",
+done:false
+},
+
+{
+name:"ELECTRICAL POWER",
+value:"ESTABLISH",
+done:false
+},
+
+{
+name:"EXTERIOR LIGHTS",
+value:"AS REQUIRED",
+done:false
+},
+
+{
+name:"DOORS",
+value:"OPEN",
+done:false
+}
+
+]
+
+}
+
+]
+
+},
+
+    {
+title:"SECURING AIRCRAFT",
+
+sections:[
+
+{
+title:"",
+
+items:[
+
+{
+name:"IRS MODE SELECTORS",
+value:"OFF",
+done:false
+},
+
+{
+name:"APU",
+value:"OFF",
+done:false
+},
+
+{
+name:"L AFT FUEL PUMP",
+value:"OFF",
+done:false
+},
+
+{
+name:"EMERGENCY EXIT LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"WINDOW HEAT",
+value:"OFF",
+done:false
+},
+
+{
+name:"PACKS",
+value:"OFF",
+done:false
+},
+
+{
+name:"CABIN LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"EXTERIOR LIGHTS",
+value:"OFF",
+done:false
+},
+
+{
+name:"STANDBY POWER",
+value:"OFF",
+done:false
+},
+
+{
+name:"BATTERY",
+value:"OFF",
+done:false
+}
+
+]
+
+}
+
+]
+
+}
 
 function loadChecklist(){
 
