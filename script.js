@@ -2590,7 +2590,6 @@ document.getElementById("logbook-list").innerHTML = list;
 
 function openFlightDetails(id){
 
-
 let flights =
 JSON.parse(localStorage.getItem("aerolog_flights")) || [];
 
@@ -2609,7 +2608,6 @@ content.innerHTML = `
 
 <section class="hero">
 
-
 <p class="label">
 FLIGHT DETAILS
 </p>
@@ -2620,179 +2618,126 @@ ${flight.flightNumber || "FR----"}
 </h2>
 
 
-<p>
-${flight.aircraft}
-</p>
-
-
-<div class="flight-line"></div>
+</section>
 
 
 
-<div class="flight-card">
-
-<div>
-
-<strong>
-ROUTE
-</strong>
+<section class="recent">
 
 
-<p>
-${flight.departure}
-→
-${flight.arrival}
-</p>
-
-</div>
-
-</div>
+<div class="flight-card details-card">
 
 
+<div class="detail-row">
 
-<div class="flight-card">
-
-<div>
+<span>AIRCRAFT</span>
 
 <strong>
-DATE
+${flight.aircraft || "-"}
 </strong>
 
-
-<p>
-${flight.date}
-</p>
-
-
-</div>
-
 </div>
 
 
 
-<div class="flight-card">
+<div class="detail-row">
 
-<div>
+<span>ROUTE</span>
 
 <strong>
-DURATION
+${flight.departure || "-"} 
+→ 
+${flight.arrival || "-"}
 </strong>
 
+</div>
 
-<p>
+
+
+<div class="detail-row">
+
+<span>FLIGHT TIME</span>
+
+<strong>
 ${flight.duration || "--"}
-</p>
-
-
-</div>
-
-</div>
-
-
-
-<div class="flight-card">
-
-<div>
-
-<strong>
-TYPE
 </strong>
 
-
-<p>
-${flight.type}
-</p>
-
-
-</div>
-
 </div>
 
 
 
-<div class="flight-card">
+<div class="detail-row">
 
-<div>
+<span>TYPE</span>
 
 <strong>
-FLIGHT ROUTE
+${flight.type || "-"}
 </strong>
 
-
-<p>
-${flight.route || "Not available"}
-</p>
-
-
-</div>
-
 </div>
 
 
 
-<div class="flight-card">
+<div class="detail-row">
 
-<div>
+<span>DATE</span>
 
 <strong>
-METAR DEPARTURE
+${flight.date || "-"}
 </strong>
 
-<p>
-${flight.metarDeparture || "Not available"}
-</p>
-
-
-</div>
-
 </div>
 
 
-<div class="flight-card">
 
-<div>
+<div class="detail-row">
+
+<span>ROUTE</span>
 
 <strong>
-METAR ARRIVAL
+${flight.route || "Not inserted"}
 </strong>
 
-<p>
-${flight.metarArrival || "Not available"}
-</p>
-
-
-</div>
-
 </div>
 
 
 
-<div class="flight-card">
+<div class="detail-row">
 
-<div>
+<span>METAR DEPARTURE</span>
 
 <strong>
-NOTES
+${flight.metarDeparture || "Not inserted"}
 </strong>
 
+</div>
 
-<p>
+
+
+<div class="detail-row">
+
+<span>METAR ARRIVAL</span>
+
+<strong>
+${flight.metarArrival || "Not inserted"}
+</strong>
+
+</div>
+
+
+
+<div class="detail-row">
+
+<span>NOTES</span>
+
+<strong>
 ${flight.notes || "No notes"}
-</p>
-
-
-</div>
+</strong>
 
 </div>
 
 
-
-<button class="save"
-onclick="loadLogbook()">
-
-BACK TO LOGBOOK
-
-</button>
+</div>
 
 
 </section>
