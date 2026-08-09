@@ -1336,3 +1336,10 @@ height:20px;
 margin:0;
 
 }
+
+.active-check{
+
+border:2px solid #e87517;
+box-shadow:0 0 20px rgba(232,117,23,0.5);
+
+}
