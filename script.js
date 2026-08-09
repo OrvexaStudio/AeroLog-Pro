@@ -4202,10 +4202,8 @@ ${checklists.map((list,index)=>`
 <div class="check-title" onclick="toggleChecklist(${index})">
 
 <span>
-▼
-${list.title}
+▼ ${list.title}
 </span>
-
 
 </div>
 
@@ -4214,7 +4212,24 @@ ${list.title}
 <div class="check-body" id="check-${index}" style="display:none">
 
 
-${list.items.map((item,i)=>`
+${
+list.sections
+
+?
+
+list.sections.map((section,sIndex)=>`
+
+${section.title ? `
+
+<p class="check-section-title">
+${section.title}
+</p>
+
+` : ""}
+
+
+
+${section.items.map((item,i)=>`
 
 <div class="check-row">
 
@@ -4232,13 +4247,49 @@ ${item.value}
 <input 
 type="checkbox"
 ${item.done ? "checked":""}
-onclick="completeCheck(${index},${i})">
+onclick="completeCheck(${index},${sIndex},${i})">
 
 
 </div>
 
 
 `).join("")}
+
+
+`).join("")
+
+
+:
+
+
+list.items.map((item,i)=>`
+
+<div class="check-row">
+
+
+<div>
+${item.name}
+</div>
+
+
+<div>
+${item.value}
+</div>
+
+
+<input 
+type="checkbox"
+${item.done ? "checked":""}
+onclick="completeCheck(${index},null,${i})">
+
+
+</div>
+
+
+`).join("")
+
+}
+
 
 
 </div>
@@ -4278,10 +4329,33 @@ box.style.display="none";
 
 }
 
-function completeCheck(section,item){
+function completeCheck(section,subSection,item){
+
+
+if(
+subSection === null
+){
 
 checklists[section].items[item].done =
 !checklists[section].items[item].done;
+
+}
+
+else{
+
+
+checklists[section]
+.sections[subSection]
+.items[item]
+.done =
+!checklists[section]
+.sections[subSection]
+.items[item]
+.done;
+
+
+}
+
 
 
 localStorage.setItem(
