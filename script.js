@@ -4324,16 +4324,15 @@ box.style.display="none";
 
 function completeCheck(section,subsection,item){
 
+let checkbox = event.target;
+
+
 if(subsection !== null){
 
 checklists[section]
 .sections[subsection]
 .items[item]
-.done =
-!checklists[section]
-.sections[subsection]
-.items[item]
-.done;
+.done = checkbox.checked;
 
 }
 
@@ -4341,10 +4340,7 @@ else{
 
 checklists[section]
 .items[item]
-.done =
-!checklists[section]
-.items[item]
-.done;
+.done = checkbox.checked;
 
 }
 
@@ -4353,8 +4349,5 @@ localStorage.setItem(
 "aerolog_checklists",
 JSON.stringify(checklists)
 );
-
-
-
 
 }
