@@ -2645,7 +2645,7 @@ ${flight.flightNumber || "FR----"}
 <section class="recent">
 
 
-<div class="flight-card details-card">
+<div class="details-card">
 
 
 <div class="detail-row">
@@ -2805,85 +2805,7 @@ navigator.serviceWorker.register(
 
 }
 
-function openFlightDetails(id){
 
-let flights =
-JSON.parse(localStorage.getItem("aerolog_flights")) || [];
-
-
-let flight =
-flights.find(f=>f.id===id);
-
-
-if(!flight) return;
-
-
-content.innerHTML = `
-
-<section class="hero">
-
-<p class="label">
-FLIGHT DETAILS
-</p>
-
-
-<h2>
-${flight.flightNumber || "FR----"}
-</h2>
-
-
-</section>
-
-
-<section class="recent">
-
-
-<div class="flight-card">
-
-<p>
-${flight.aircraft}
-</p>
-
-
-<p>
-${flight.departure}
-→
-${flight.arrival}
-</p>
-
-
-<p>
-ROUTE:
-${flight.route || "N/A"}
-</p>
-
-
-<p>
-METAR DEP:
-${flight.metarDeparture || "N/A"}
-</p>
-
-
-<p>
-METAR ARR:
-${flight.metarArrival || "N/A"}
-</p>
-
-
-<p>
-DURATION:
-${flight.duration || "--"}
-</p>
-
-
-</div>
-
-
-</section>
-
-`;
-
-}
 
 function openPlannedFlightDetails(id){
 
