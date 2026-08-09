@@ -1394,3 +1394,50 @@ border-radius:10px;
 transition:width 0.4s ease;
 
 }
+
+.check-progress{
+
+margin:20px 0;
+background:#111;
+padding:15px;
+border-radius:12px;
+
+}
+
+
+.progress-text{
+
+display:flex;
+justify-content:space-between;
+font-size:14px;
+color:#aaa;
+margin-bottom:10px;
+
+}
+
+
+.progress-text span{
+
+color:#fff;
+font-weight:bold;
+
+}
+
+
+.progress-bar{
+
+height:8px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+height:100%;
+background:#e87517;
+transition:.3s;
+
+}
