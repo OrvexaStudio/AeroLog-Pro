@@ -2085,31 +2085,52 @@ ${selectedPlanned.map(flight=>`
 
 <div 
 class="flight-card clickable"
-onclick="openPlannedFlightDetails(${flight.id})">
+onclick="openFlightDetails(${flight.id})">
 
+<div class="detail-row">
 
-<div>
+<span>FLIGHT</span>
 
 <strong>
 ${flight.flightNumber || "FR----"}
 </strong>
 
+</div>
 
-<p>
+
+<div class="detail-row">
+
+<span>AIRCRAFT</span>
+
+<strong>
 ${flight.aircraft}
-</p>
+</strong>
+
+</div>
 
 
-<p>
+<div class="detail-row">
+
+<span>ROUTE</span>
+
+<strong>
 ${flight.departure} → ${flight.arrival}
-</p>
-
-
-</div>
-
+</strong>
 
 </div>
 
+
+<div class="detail-row">
+
+<span>TIME</span>
+
+<strong>
+${flight.duration || "--"}
+</strong>
+
+</div>
+
+</div>
 
 `).join("")}
 
