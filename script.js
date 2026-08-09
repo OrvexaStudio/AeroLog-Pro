@@ -4249,7 +4249,7 @@ ${item.value}
 <input 
 type="checkbox"
 ${item.done ? "checked":""}
-onclick="completeCheck(${index},${sIndex},${i})">
+onclick="event.stopPropagation(); completeCheck(${index},${sIndex},${i})">
 
 
 </div>
@@ -4278,11 +4278,10 @@ ${item.name}
 ${item.value}
 </div>
 
-
 <input 
 type="checkbox"
 ${item.done ? "checked":""}
-onclick="completeCheck(${index},null,${i})">
+onclick="event.stopPropagation(); completeCheck(${index},null,${i})">
 
 
 </div>
