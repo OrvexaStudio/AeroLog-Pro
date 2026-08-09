@@ -4241,7 +4241,7 @@ ${item.value}
 
 <input 
 type="checkbox"
-onclick="completeCheck(${index},${s},${i}); return false;"
+onclick="completeCheck(${index},${s},${i})"
 ${item.done ? "checked":""}
 >
 
@@ -4273,7 +4273,7 @@ ${item.value}
 
 <input 
 type="checkbox"
-onclick="completeCheck(${index},null,${i}); return false;"
+onclick="completeCheck(${index},null,${i})"
 ${item.done ? "checked":""}
 >
 
@@ -4321,11 +4321,7 @@ box.style.display="none";
 }
 
 }
-
-function completeCheck(section,subsection,item){
-
-let checkbox = event.target;
-
+function completeCheck(section,subsection,item,checkbox){
 
 if(subsection !== null){
 
