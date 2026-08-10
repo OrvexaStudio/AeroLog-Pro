@@ -4290,26 +4290,7 @@ NORMAL CHECKLIST
 </p>
 
 
-<div class="check-progress">
 
-<div class="progress-text">
-
-${checklists[currentChecklist].title}
-
-<span>
-${completedItems} / ${totalItems} COMPLETED
-</span>
-
-</div>
-
-
-<div class="progress-bar">
-
-<div class="progress-fill" style="width:${progress}%"></div>
-
-</div>
-
-</div>
 
 
 <div class="check-progress">
