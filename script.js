@@ -4184,8 +4184,9 @@ checklists = savedChecklists;
 let currentChecklist =
 Number(localStorage.getItem("aerolog_current_checklist")) || 0;
 function loadChecklist(){
-
+currentChecklist = Number(localStorage.getItem("aerolog_current_checklist")) || 0;
 let active = checklists[currentChecklist];
+    
 let totalItems = 0;
 let completedItems = 0;
 
@@ -4456,7 +4457,7 @@ localStorage.setItem(
 "aerolog_checklists",
 JSON.stringify(checklists)
 );
-checkChecklistProgress();
+loadChecklist();
 }
 
 function checkChecklistProgress(){
