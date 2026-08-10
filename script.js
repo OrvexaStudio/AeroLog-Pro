@@ -4428,7 +4428,7 @@ box.style.display="none";
 }
 function completeCheck(section,subsection,item,event){
 
-event.stopPropagation();
+
 
 if(subsection !== null){
 
