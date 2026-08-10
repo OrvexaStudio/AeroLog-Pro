@@ -4232,37 +4232,9 @@ Math.round((completedItems / totalItems) * 100)
 
 
 
-if(active.sections){
 
-    active.sections.forEach(section=>{
 
-        section.items.forEach(item=>{
 
-            totalItems++;
-
-            if(item.done){
-                completedItems++;
-            }
-
-        });
-
-    });
-
-}
-
-else{
-
-    active.items.forEach(item=>{
-
-        totalItems++;
-
-        if(item.done){
-            completedItems++;
-        }
-
-    });
-
-}
 
 
 
