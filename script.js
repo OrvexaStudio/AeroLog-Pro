@@ -4181,7 +4181,8 @@ if(savedChecklists){
 checklists = savedChecklists;
 
 }
-
+let currentChecklist =
+Number(localStorage.getItem("aerolog_current_checklist")) || 0;
 function loadChecklist(){
 
 let active = checklists[currentChecklist];
