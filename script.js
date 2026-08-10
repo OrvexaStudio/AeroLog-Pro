@@ -4564,3 +4564,61 @@ JSON.stringify(checklists)
 loadChecklist();
 
 }
+
+function updateChecklistProgress(){
+
+let active = checklists[currentChecklist];
+
+let totalItems = 0;
+let completedItems = 0;
+
+
+if(active.sections){
+
+active.sections.forEach(section=>{
+
+section.items.forEach(item=>{
+
+totalItems++;
+
+if(item.done){
+completedItems++;
+}
+
+});
+
+});
+
+}
+
+else{
+
+active.items.forEach(item=>{
+
+totalItems++;
+
+if(item.done){
+completedItems++;
+}
+
+});
+
+}
+
+
+let progress =
+totalItems > 0
+?
+Math.round((completedItems / totalItems) * 100)
+:
+0;
+
+
+document.querySelector(".check-progress p").innerHTML =
+`${completedItems} / ${totalItems} COMPLETED`;
+
+
+document.querySelector(".progress-fill").style.width =
+progress + "%";
+
+}
