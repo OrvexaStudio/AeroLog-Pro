@@ -4339,7 +4339,7 @@ ${item.value}
 
 <input 
 type="checkbox"
-onclick="completeCheck(${index},${s},${i}); event.stopPropagation();"
+onclick="event.stopPropagation(); completeCheck(${index},${s},${i})"
 ${item.done ? "checked":""}
 >
 
@@ -4371,7 +4371,7 @@ ${item.value}
 
 <input 
 type="checkbox"
-onclick="completeCheck(${index},null,${i}); event.stopPropagation();"
+onclick="event.stopPropagation(); completeCheck(${index},null,${i})"
 ${item.done ? "checked":""}
 >
 
@@ -4426,7 +4426,9 @@ box.style.display="none";
 }
 
 }
-function completeCheck(section,subsection,item){
+function completeCheck(section,subsection,item,event){
+
+event.stopPropagation();
 
 if(subsection !== null){
 
@@ -4457,7 +4459,7 @@ localStorage.setItem(
 "aerolog_checklists",
 JSON.stringify(checklists)
 );
-loadChecklist();
+updateChecklistProgress();
 }
 
 function checkChecklistProgress(){
